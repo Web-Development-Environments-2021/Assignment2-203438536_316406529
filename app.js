@@ -9,10 +9,23 @@ var interval;
 
 $(document).ready(function() {
 	context = canvas.getContext("2d");
-	Start();
+	// Start();
+	context = displayWelcome();
 });
 
+function displayWelcome(){
+	document.getElementById("Content").style.display = "none";
+	document.getElementById("welcome").style.display = "block";
+
+}
+function displayAbout(){
+	document.getElementById("welcome").style.display = "none";
+	document.getElementById("about").style.display = "block";
+}
+
+
 function Start() {
+	// displayWelcome();
 	board = new Array();
 	score = 0;
 	pac_color = "yellow";
@@ -69,7 +82,7 @@ function Start() {
 		},
 		false
 	);
-	interval = setInterval(UpdatePosition, 250);
+	interval = setInterval(UpdatePosition, 100);
 }
 
 function findRandomEmptyCell(board) {
