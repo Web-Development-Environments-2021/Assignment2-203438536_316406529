@@ -6,9 +6,11 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
-
+var x_press;
+var y_press;
+// const context = canvas.getContext("2d");
 $(document).ready(function() {
-	const context = canvas.getContext("2d");
+	// context = canvas.getContext("2d");
 	// Start();
 	$('#Content').children().hide();
 	$('#welcome').show();
@@ -42,6 +44,7 @@ function displayAbout(){
 }
 
 function displayGamePage(){
+	context = canvas.getContext("2d");
 	$('#Content').children().hide();
 	$('#gamePage').show();
 	Start();
@@ -81,6 +84,18 @@ function submitRegister(){
 	}
 	else{
 		alert("Error!");
+	}
+}
+
+function LogIn(){
+	let logInUserName = document.getElementById("logInUserName").value;
+	let logInPass = document.getElementById("logInPass").value;
+	let detailCheck = checkLogInDetails(logInUserName,logInPass);
+	if(detailCheck){
+		displayGamePage();
+	}
+	else{
+		alert("userName Or Password Incorrect")
 	}
 }
 
@@ -194,15 +209,23 @@ function findRandomEmptyCell(board) {
 
 function GetKeyPressed() {
 	if (keysDown[38]) {
+		x_press = 0.15;
+		y_press =1.85;
 		return 1;
 	}
 	if (keysDown[40]) {
+		x_press = 0.65;
+		y_press = 2.35;
 		return 2;
 	}
 	if (keysDown[37]) {
+		x_press =0.75 ;
+		y_press =2;
 		return 3;
 	}
 	if (keysDown[39]) {
+		x_press = 0.15;
+		y_press =1.85;
 		return 4;
 	}
 }
@@ -214,16 +237,16 @@ function Draw() {
 	for (var i = 0; i < 10; i++) {
 		for (var j = 0; j < 10; j++) {
 			var center = new Object();
-			center.x = i * 60 + 30;
-			center.y = j * 60 + 30;
+			center.x = i * 50 + 30;
+			center.y = j * 50 + 30;
 			if (board[i][j] == 2) {
 				context.beginPath();
-				context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
+				context.arc(center.x, center.y, 20, x_press * Math.PI, y_press * Math.PI); // half circle
 				context.lineTo(center.x, center.y);
 				context.fillStyle = pac_color; //color
 				context.fill();
 				context.beginPath();
-				context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
+				context.arc(center.x + 5, center.y - 13, 4, 0, 2 * Math.PI); // circle
 				context.fillStyle = "black"; //color
 				context.fill();
 			} else if (board[i][j] == 1) {
