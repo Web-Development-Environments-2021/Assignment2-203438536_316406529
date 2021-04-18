@@ -5,14 +5,17 @@ menuButton{
     width: 30px;
     height: 5px;
     color: black;
+    border-radius: 2px;
+
 
 }
 menuButton:hover{
     background-color: rgb(64, 99, 163);
 }
-.button {
-    border: none;
-    color: white;
+button {
+    border: 2px;
+    border-radius: 2px;
+    background-color: rgb(95, 66, 66);
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -21,3 +24,12 @@ menuButton:hover{
     margin: 4px 2px;
     cursor: pointer;
   }
+
+button:hover{
+    background-color: rgb(134, 131, 131);
+}
+
+#welcome{
+    padding-left: 300px;
+    padding-top: 100px;
+}

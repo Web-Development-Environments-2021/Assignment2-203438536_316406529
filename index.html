@@ -19,11 +19,29 @@
 		</div>
 		<div id="Content">
 			<div id="welcome">
-				<button type="button">Sign-in</button>
+				<button type="button" onclick="showRegisterForm()">Sign-in</button>
 				<button type="button">Register</button>
 			</div>
 			<div id="signUp">
-				<text>signUp</text>
+
+				<label for="userName"><b>Username</b></label>
+				<input type="text" placeholder="Enter Username" name="Uname" id="userName" required>
+				<br>
+				<label for="Password"><b>Password</b></label>
+				<input type="text" placeholder="Enter Password" name="password" required id="password">
+				<br>
+				<label for="Fullname"><b>Full name</b></label>
+				<input type="text" placeholder="Enter Fullname" name="Fname" id="fullName" required>
+				<br>
+				<label for="email"><b>Email</b></label>
+				<input type="text" placeholder="Enter Email" name="email"  id="email" required>
+				<br>
+				<label for="Birthday"><b>Birthday</b></label>
+				<input type="text" placeholder="Enter Birthday" name="Bday" id="birthDay" required>
+				<br>
+				<div id = "submitSign">
+					<button type="button" class="submitSignButtun" onclick="submitRegister()">Submit</button>
+				</div>
 			</div>
 			<div id="logIn">
 				<text>logIn</text>
@@ -52,7 +70,7 @@
 			</div>
 
 		</div>
-		<div id="Footer">
+		<div id="Footer" align="center">
 			<text>produced by aviranGit&N.K.productions</text>
 		</div>
 

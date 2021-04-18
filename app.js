@@ -8,21 +8,86 @@ var time_elapsed;
 var interval;
 
 $(document).ready(function() {
-	context = canvas.getContext("2d");
+	const context = canvas.getContext("2d");
 	// Start();
-	context = displayWelcome();
+	$('#Content').children().hide();
+	$('#welcome').show();
+	//context = displayWelcome();
 });
 
 function displayWelcome(){
-	document.getElementById("Content").style.display = "none";
+	// document.getElementById("Content").style.display = "none";
 	document.getElementById("welcome").style.display = "block";
-
-}
-function displayAbout(){
-	document.getElementById("welcome").style.display = "none";
-	document.getElementById("about").style.display = "block";
 }
 
+function displayAbout(){}
+
+function showRegisterForm(){
+	$('#Content').children().hide();
+	$('#signUp').show();
+}
+
+function submitRegister(){
+	alert("enter submit func")
+	let userName = document.getElementById("userName").value;
+	let pass = document.getElementById("password").value;
+	let fullName = document.getElementById("fullName").value;
+	let email = document.getElementById("email").value;
+	let birthDay = document.getElementById("birthDay").value;
+	let passCheck = passwordValidation(pass);
+	let fullnameCheck = fullNameValidation(fullNameValidation);
+	let emailCheck = emailValidation(email);
+	let usernameCheck = checkIfUsernameExist(userName);
+	if(passCheck & fullnameCheck  & emailCheck  & !usernameCheck){
+		usersDB.push(userName,pass,fullName,email,birthDay);
+		alert("user" + userName + "successfuly sign in!");
+		displayGamePage();
+	}
+	else{
+		alert("Error!");
+	}
+}
+
+function fullNameValidation(fullName){
+	alert("enter fullname func");
+
+	// var matches = fullName.match(/\d+/g);
+	if (/\d/.test(fullName)) {
+   	 	alert('fullName contains number');	
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+
+function passwordValidation(pass){
+	alert("enter pass func");
+	var passForm =  /^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/;
+	alert("pass 2");
+	if(pass.match(passForm)){
+		alert("valid pass");
+		return true;
+	}
+	alert("Please enter a valid password.\n(At least 6 characters, at least one digit and one letter)");
+	return false;
+}
+
+function emailValidation(email){
+	alert("enter email func");
+	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+	if(emailReg.test(email)){
+		return true;
+	}
+	else{
+		alert("Please enter valid email.");
+		return false;
+	}
+}
+function displayGamePage(){
+	$('#Content').children().hide();
+	$('#gamePage').show();
+}
 
 function Start() {
 	// displayWelcome();
