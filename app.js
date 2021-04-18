@@ -21,11 +21,30 @@ function displayWelcome(){
 
 }
 
-function displayAbout(){}
-
 function displayRegister(){
 	$('#Content').children().hide();
 	$('#Register').show();
+}
+
+function displayLogin(){
+	$('#Content').children().hide();
+	$('#logIn').show();
+}
+
+function displayConfig(){
+	$('#Content').children().hide();
+	$('#config').show();
+}
+
+function displayAbout(){
+	$('#Content').children().hide();
+	$('#about').show();
+}
+
+function displayGamePage(){
+	$('#Content').children().hide();
+	$('#gamePage').show();
+	Start();
 }
 
 function submitRegister(){
@@ -100,11 +119,6 @@ function emailValidation(email){
 		alert("Please enter valid email.");
 		return false;
 	}
-}
-function displayGamePage(){
-	$('#Content').children().hide();
-	$('#gamePage').show();
-	Start();
 }
 
 function Start() {
