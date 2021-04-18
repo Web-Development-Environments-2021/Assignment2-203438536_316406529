@@ -4,6 +4,8 @@
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
 		<link rel="stylesheet" type="text/css" href="styleSheet.css" />
+		<!-- <script type="text/javascript" src="app.js"></script> -->
+		<script type="text/javascript" src="userdsHndle.js"></script>
 	</head>
 
 	<body>
@@ -19,10 +21,10 @@
 		</div>
 		<div id="Content">
 			<div id="welcome">
-				<button type="button" onclick="showRegisterForm()">Sign-in</button>
-				<button type="button">Register</button>
+				<button type="button" onclick="displayLogin()">log-in</button>
+				<button type="button"onclick= "displayRegister()">Register</button>
 			</div>
-			<div id="signUp">
+			<div id="Register">
 
 				<label for="userName"><b>Username</b></label>
 				<input type="text" placeholder="Enter Username" name="Uname" id="userName" required>

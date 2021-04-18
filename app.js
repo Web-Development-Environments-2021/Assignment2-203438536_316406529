@@ -16,15 +16,16 @@ $(document).ready(function() {
 });
 
 function displayWelcome(){
-	// document.getElementById("Content").style.display = "none";
-	document.getElementById("welcome").style.display = "block";
+	$('#Content').children().hide();
+	$('#welcome').show();
+
 }
 
 function displayAbout(){}
 
-function showRegisterForm(){
+function displayRegister(){
 	$('#Content').children().hide();
-	$('#signUp').show();
+	$('#Register').show();
 }
 
 function submitRegister(){
@@ -34,13 +35,29 @@ function submitRegister(){
 	let fullName = document.getElementById("fullName").value;
 	let email = document.getElementById("email").value;
 	let birthDay = document.getElementById("birthDay").value;
+	let usernameCheck = checkIfUsernameExist(userName);
+	if(usernameCheck){
+		alert("UserName already exist in system, please choose log-in or register.");
+		displayWelcome();
+		return;
+	}
 	let passCheck = passwordValidation(pass);
+	if(!passCheck){
+		alert("invalid password, make sure your password contains minimun 6 char, letters and numbers");
+		return;
+	}
 	let fullnameCheck = fullNameValidation(fullNameValidation);
 	let emailCheck = emailValidation(email);
-	let usernameCheck = checkIfUsernameExist(userName);
+
 	if(passCheck & fullnameCheck  & emailCheck  & !usernameCheck){
-		usersDB.push(userName,pass,fullName,email,birthDay);
-		alert("user" + userName + "successfuly sign in!");
+		usersDB.push({
+			username: userName,
+			password: pass,
+			fullName: fullName,
+			email: email,
+			birthDate: birthDay
+		});
+		alert("User " + userName + " successfuly sign in!");
 		displayGamePage();
 	}
 	else{
@@ -87,6 +104,7 @@ function emailValidation(email){
 function displayGamePage(){
 	$('#Content').children().hide();
 	$('#gamePage').show();
+	Start();
 }
 
 function Start() {

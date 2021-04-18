@@ -16,5 +16,9 @@ function checkIfUsernameExist(username){
 
     //return true if already username exist
     let usreExist = usersDB.some((user)=>user.userName == username);
+    if( usreExist){
+        alert("user already exist in system")
+    }
     return usreExist;
 }
+
