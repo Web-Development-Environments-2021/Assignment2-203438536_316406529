@@ -6,10 +6,14 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
-var x_press;
-var y_press;
+var x_press = 0.15;
+var y_press =1.85;
 var eye_press_y;
 var eye_press_x;
+var keyUp = 38;
+var keyDown = 40;
+var keyLeft = 37;
+var keyRight = 39;
 
 // const context = canvas.getContext("2d");
 $(document).ready(function() {
@@ -211,24 +215,24 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-	if (keysDown[38]) { //up
+	if (keysDown[keyUp]) { //up
 		x_press =1.65 ;
 		y_press = 3.35;
 		return 1;
 	}
-	if (keysDown[40]) {//down
+	if (keysDown[keyDown]) {//down
 		x_press = 0.7;
 		y_press = 2.4;
 		return 2;
 	}
-	if (keysDown[37]) {//left
+	if (keysDown[keyLeft]) {//left
 		x_press = 1.10;
 		y_press = 2.80;
 		// eye_press_y = 13;
 		// eye_press_x = 2;
 		return 3;
 	}
-	if (keysDown[39]) {//right
+	if (keysDown[keyRight]) {//right
 		x_press = 0.15;
 		y_press =1.85;
 		// eye_press_y = 13;
