@@ -6,6 +6,17 @@
 		<link rel="stylesheet" type="text/css" href="styleSheet.css" />
 		<!-- <script type="text/javascript" src="app.js"></script> -->
 		<script type="text/javascript" src="userdsHndle.js"></script>
+		<script type="text/javascript" src="config.js"></script>
+		<!-- DATEPICKER -->
+		<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<link rel="stylesheet" href="/resources/demos/style.css">
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script>
+		$( function() {
+		  $( "#datepicker" ).datepicker();
+		} );
+		</script> -->
 	</head>
 
 	<body>
@@ -39,6 +50,8 @@
 				<input type="text" placeholder="Enter Email" name="email"  id="email" required>
 				<br>
 				<label for="Birthday"><b>Birthday</b></label>
+				<!-- <p>Date: <input type="text" id="datepicker"></p> -->
+
 				<input type="text" placeholder="Enter Birthday" name="Bday" id="birthDay" required>
 				<br>
 				<div id = "submitSign">
@@ -57,10 +70,36 @@
 				<div id = "LogInButton">
 					<button type="button" class="LogInButton" onclick="LogIn()">Log-In</button>
 				</div>
-
 			</div>
+
 			<div id="config">
-				<text>config</text>
+				<h1>Define the keys to move with!</h1>
+				<div id="chooseKeys">
+					<h2>Key up:</h2>
+					<input type="text" id="upKey"  maxlength="1" placeholder="Tap key to move up with" required> 
+					<br>
+					<h2>Key down:</h2>
+					<input type="text" id="downKey"  maxlength="1" placeholder="Tap key to move down with" required>
+					<br>
+					<h2>Key right:</h2>
+					<input type="text" id="rightKey"  maxlength="1" placeholder="Tap key to move right with" required>
+					<br>
+					<h2>Key left:</h2>
+					<input type="text" id="leftKey"  maxlength="1" placeholder="Tap key to move left with" required>
+					<br>
+					<div>
+						<button type="button" class="setKeysButton" onclick="setKeyToGame()">Apply</button>
+						<button type="button" onclick="setDefault()">Reset(defaul)</button>
+					</div>
+				</div>
+				<div>
+					<h2>Choose number of balls:</h2>
+					<input type="number" placeholder="Number of balls" id="numOfBalls">
+					<div>
+						<button type="button" onclick="setNumberOfBalls()">Apply</button>
+					</div>
+					
+				</div>
 
 			</div>
 			<div id="about">

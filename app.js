@@ -51,6 +51,7 @@ function displayRegister(){
 	$('#Register').show();
 }
 
+
 function displayLogin(){
 	$('#Content').children().hide();
 	$('#logIn').show();
@@ -261,6 +262,7 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
+	// alert(keyUp);
 	if (keysDown[keyUp]) { //up
 		x_press =1.65 ;
 		y_press = 3.35;
