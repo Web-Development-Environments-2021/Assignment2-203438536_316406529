@@ -6,7 +6,7 @@ const usersDB = [{
     birthDate: "",
 }
 ];
-function checkDetails(username, Password){
+function checkLogInDetails(username, Password){
     let userCheck =  usersDB.some((user)=>(user.userName==username && user.password==Password));
     return userCheck;
 }
