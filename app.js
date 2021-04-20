@@ -21,6 +21,7 @@ var monster2Location;
 var monster3Location;
 var monster4Location;
 
+
 /*
 0 = empty
 1 = food
@@ -30,7 +31,6 @@ var monster4Location;
 5= special food
 10= monster
 */
-
 // const context = canvas.getContext("2d");
 $(document).ready(function() {
 	// context = canvas.getContext("2d");
