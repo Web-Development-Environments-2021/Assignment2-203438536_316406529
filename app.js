@@ -7,6 +7,7 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
+
 var x_press = 0.15;
 var y_press =1.85;
 var eye_press_y;
@@ -16,10 +17,16 @@ var keyDown = 40;
 var keyLeft = 37;
 var keyRight = 39;
 //monster
+var numberOfMonnsers=4;
+var monsterInterval;
 var monster1Location;
 var monster2Location;
 var monster3Location;
 var monster4Location;
+
+//MovingPoint
+var movingPointLocation = new Array(3);
+var movingPointInterval;
 
 /*
 0 = empty
@@ -29,6 +36,7 @@ var monster4Location;
 4= wall
 5= special food
 10= monster
+50=movingPoints
 */
 
 // const context = canvas.getContext("2d");
@@ -178,6 +186,7 @@ function Start() {
 	monster2Location = [9,9,0];
 	monster3Location = [0,9,0];
 	monster4Location = [9,0,0];
+
 	pac_color = "yellow";
 	var cnt = 100;
 	var food_remain = 50;
@@ -228,10 +237,21 @@ function Start() {
 	}
 
 	//monster start locations
-	board[monster1Location[0]][monster1Location[1]] = 10;
-	board[monster2Location[0]][monster2Location[1]] = 10;
-	board[monster3Location[0]][monster3Location[1]] = 10;
-	board[monster4Location[0]][monster4Location[1]] = 10;
+	if(numberOfMonnsers>0){
+		board[monster1Location[0]][monster1Location[1]] = 10;
+	}
+	if(numberOfMonnsers>1){
+		board[monster2Location[0]][monster2Location[1]] = 10;
+	}
+	if(numberOfMonnsers>2){
+		board[monster3Location[0]][monster3Location[1]] = 10;
+	}
+	if(numberOfMonnsers>3){
+		board[monster4Location[0]][monster4Location[1]] = 10;
+	}
+	//moving Points
+	movingPointLocation = [4,4,0];
+	board[movingPointLocation[0]][movingPointLocation[1]] = 50;
 	//keys listener
 	keysDown = {};
 	addEventListener(
@@ -248,7 +268,9 @@ function Start() {
 		},
 		false
 	);
-	interval = setInterval(UpdatePosition, 1000);
+	monsterInterval = setInterval(mostersLocationsUpdate,1000);
+	interval = setInterval(UpdatePosition, 300);
+	// movingPointInterval = setInterval(movingPointRandomMove, 1000);
 }
 
 function findRandomEmptyCell(board) {
@@ -293,7 +315,8 @@ function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
-	updateMonsterLocaation(monster1Location);
+	movingPointRandomMove();
+	// updateMonsterLocaation(monster1Location);
 	for (var i = 0; i < 10; i++) {
 		for (var j = 0; j < 10; j++) {
 			var center = new Object();
@@ -319,27 +342,49 @@ function Draw() {
 				context.rect(center.x - 30, center.y - 30, 60, 60);
 				context.fillStyle = "grey"; //color
 				context.fill();
-			} else if (board[i][j] == 5){
+			} else if (board[i][j] == 5){//special 5 points
 				context.beginPath();
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
 				context.fillStyle = "green"; //color
 				context.fill();
-			} else if (board[i][j] == 10){
+			} else if (board[i][j] == 10){//monster
 				context.beginPath();
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
 				context.fillStyle = "red"; //color
 				context.fill();
 			}
+			else if (board[i][j] == 50){//movingPoints
+				context.beginPath();
+				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
+				context.fillStyle = "yellow"; //color
+				context.fill();
+			}
+
 			
 		}
 	}
 }
+
+function mostersLocationsUpdate(){
+	if(numberOfMonnsers>0){
+		updateMonsterLocaation(monster1Location);
+	}
+	if(numberOfMonnsers>1){
+		updateMonsterLocaation(monster2Location);
+	}
+	if(numberOfMonnsers>2){
+		updateMonsterLocaation(monster3Location);
+	}
+	if(numberOfMonnsers>3){
+		updateMonsterLocaation(monster4Location);
+	}
+}
+
 function updateMonsterLocaation(monsterLocation){
 	if (monsterLocation[0]<shape.i && board[monsterLocation[0]+1][monsterLocation[1]] != 4 && monsterLocation[0]<9){//one step to the right
 		if(monsterLocation[0]+1 == shape.i && monsterLocation[1] == shape.j){
-			failsLeft-=1;
-			Start();
-			return;
+			monsterEatPacman();
+			Start();			return;
 		}
 		board[monsterLocation[0]][monsterLocation[1]] = monsterLocation[2];
 		monsterLocation[0]+= 1;
@@ -348,7 +393,7 @@ function updateMonsterLocaation(monsterLocation){
 	}
 	else if(monsterLocation[1]<shape.j && board[monsterLocation[0]][monsterLocation[1]+1] != 4 && monsterLocation[1]<9){//one step to the down
 		if(monsterLocation[0] == shape.i && monsterLocation[1]+1 == shape.j){
-			failsLeft-=1;
+			monsterEatPacman();
 			Start();
 			return;
 		}
@@ -360,7 +405,7 @@ function updateMonsterLocaation(monsterLocation){
 	}
 	else if (monsterLocation[0]>shape.i && board[monsterLocation[0]-1][monsterLocation[1]] != 4 && monsterLocation[0]>0){//one step left
 		if(monsterLocation[0]-1 == shape.i && monsterLocation[1] == shape.j){
-			failsLeft-=1;
+			monsterEatPacman();
 			Start();
 			return;
 		}
@@ -372,7 +417,7 @@ function updateMonsterLocaation(monsterLocation){
 	}
 	else if(monsterLocation[1]>shape.j && board[monsterLocation[0]][monsterLocation[1]-1] != 4 && monsterLocation[1]>0){//one step to the up
 		if(monsterLocation[0] == shape.i && monsterLocation[1]-1 == shape.j){
-			failsLeft-=1;
+			monsterEatPacman();
 			Start();
 			return;
 		}
@@ -416,8 +461,14 @@ function UpdatePosition() {
 		score+=5;
 	}
 	if (board[shape.i][shape.j] == 10) {//monster
-		score-=10;
+		monsterEatPacman();
+		Start();
+		return;
 	}
+	if (board[shape.i][shape.j] ==50){//moving Point
+		score+=50;
+	}
+
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
@@ -426,8 +477,42 @@ function UpdatePosition() {
 	}
 	if (score == 50) {
 		window.clearInterval(interval);
+		window.clearInterval(monsterInterval);
+		window.clearInterval(movingPointInterval);
 		window.alert("Game completed");
 	} else {
 		Draw();
 	}
+}
+
+function monsterEatPacman(){
+	window.clearInterval(interval);
+	window.clearInterval(monsterInterval);
+	window.clearInterval(movingPointInterval);
+	failsLeft-=1;
+	score-=10;
+	window.clearInterval(monsterInterval);
+}
+
+function movingPointRandomMove(){
+	var x=5;
+	var y=5;
+	while(x==y){
+		y=5;
+		x=5;
+		while ((x != 0  && x!=1 && x!=-1)) {//right and down
+			x = Math.floor(Math.random() *10)-5;
+		}
+		while ((y != 0  && y!=1 && y!=-1 )) {//right and down
+			y = Math.floor(Math.random() *10)-5;
+		}
+	}
+	// if(board[movingPointLocation[0]+x][movingPointLocation[1]+y] != 4 && (9 < movingPointLocation[0]+x > 0) && (9 < movingPointLocation[1]+y > 0)){
+	// 	board[movingPointLocation[0]][movingPointLocation[1]] = movingPointLocation[2];
+	// 	movingPointLocation[0] = movingPointLocation[0] + x;
+	// 	movingPointLocation[1] = movingPointLocation[1] + y;
+	// 	movingPointLocation[2] = board[movingPointLocation[0]][movingPointLocation[1]];
+	// 	board[movingPointLocation[0]][movingPointLocation[1]] = 50;
+	// }
+	
 }
