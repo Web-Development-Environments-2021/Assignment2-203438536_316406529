@@ -29,6 +29,11 @@ var monster4Location;
 var movingPointLocation = new Array(3);
 var movingPointInterval;
 
+//timer
+var timer;
+//current user
+var playingNow;
+
 /*
 0 = empty
 1 = food
@@ -125,6 +130,8 @@ function LogIn(){
 	let logInPass = document.getElementById("logInPass").value;
 	let detailCheck = checkLogInDetails(logInUserName,logInPass);
 	if(detailCheck){
+		alert(logInUserName);
+		playingNow = logInUserName;
 		displayGamePage();
 	}
 	else{
@@ -315,6 +322,11 @@ function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
+	if(timer!=null){
+		lblRemain.value = timer-time_elapsed;	
+	}
+	currUser.value = playingNow;
+	lifeRemain.value = failsLeft;
 	movingPointRandomMove();
 	// updateMonsterLocaation(monster1Location);
 	for (var i = 0; i < 10; i++) {
@@ -472,6 +484,12 @@ function UpdatePosition() {
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
+	// alert(timer);
+	if(timer != null){
+		if(time_elapsed >= timer){
+			alert("game finished!");
+		}
+	}
 	if (score >= 20 && time_elapsed <= 10) {
 		pac_color = "green";
 	}

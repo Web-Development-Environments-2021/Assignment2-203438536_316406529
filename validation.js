@@ -28,6 +28,7 @@ $(function() {
     }, 'Your password must be at least 6 characters long and contain at least one number and one char\'.')
 
     $.validator.addMethod('userExist',function(value, element){
+        alert("enter user vaild");
         return checkIfUsernameExist(value);
     },'The user name is already exist in the system.')
 
@@ -35,7 +36,7 @@ $(function() {
       rules: {
         userName:{
           required:true,
-          usreExist:false,  
+          usreExist:true,  
         },
         email: {
           required: true,
@@ -88,6 +89,11 @@ $(function() {
           required: 'Please enter an email address.',
           email: 'Please enter a <em>valid</em> email address.',
           remote: $.validator.format("{0} is already associated with an account.")
+        },
+        userName:{
+            required:'Please enter username..'
+
+
         }
       }
     });
