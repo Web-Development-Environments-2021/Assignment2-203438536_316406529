@@ -24,6 +24,7 @@ var monster2Location;
 var monster3Location;
 var monster4Location;
 
+
 //MovingPoint
 var movingPointLocation = new Array(3);
 var movingPointInterval;
@@ -38,7 +39,6 @@ var movingPointInterval;
 10= monster
 50=movingPoints
 */
-
 // const context = canvas.getContext("2d");
 $(document).ready(function() {
 	// context = canvas.getContext("2d");
