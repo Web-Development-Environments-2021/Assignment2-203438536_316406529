@@ -187,6 +187,7 @@ function Start() {
 		alert("you have reached: "+ score +" score");
 		earse();
 	}
+
 	board = new Array();
 	//monster
 	monster1Location = [0,0,0];
@@ -277,7 +278,7 @@ function Start() {
 	);
 	monsterInterval = setInterval(mostersLocationsUpdate,1000);
 	interval = setInterval(UpdatePosition, 300);
-	// movingPointInterval = setInterval(movingPointRandomMove, 1000);
+	movingPointInterval = setInterval(movingPointRandomMove, 800);
 }
 
 function findRandomEmptyCell(board) {
@@ -322,12 +323,18 @@ function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
-	if(timer!=null){
+
+  if(timer!=null){
 		lblRemain.value = timer-time_elapsed;	
 	}
 	currUser.value = playingNow;
 	lifeRemain.value = failsLeft;
 	movingPointRandomMove();
+
+  
+	// movingPointRandomMove();
+
+  
 	// updateMonsterLocaation(monster1Location);
 	for (var i = 0; i < 10; i++) {
 		for (var j = 0; j < 10; j++) {
@@ -393,18 +400,30 @@ function mostersLocationsUpdate(){
 }
 
 function updateMonsterLocaation(monsterLocation){
-	if (monsterLocation[0]<shape.i && board[monsterLocation[0]+1][monsterLocation[1]] != 4 && monsterLocation[0]<9){//one step to the right
+	// if(monsterLocation[0]==shape.i){//wanna go down/up
+	// 	if(board[monsterLocation[0]+1][monsterLocation[1]] != 4){//go right
+
+	// 	}
+	// 	else{//go left
+
+	// 	}
+	// }
+	var flag = true;
+	if (flag && monsterLocation[0]<shape.i && board[monsterLocation[0]+1][monsterLocation[1]] != 4 && monsterLocation[0]<9 && board[monsterLocation[0]+1][monsterLocation[1]] != 10){//one step to the right
 		if(monsterLocation[0]+1 == shape.i && monsterLocation[1] == shape.j){
+			flag = false;
 			monsterEatPacman();
-			Start();			return;
+			Start();
+			return;
 		}
 		board[monsterLocation[0]][monsterLocation[1]] = monsterLocation[2];
 		monsterLocation[0]+= 1;
 		monsterLocation[2] = board[monsterLocation[0]][monsterLocation[1]];
 		board[monsterLocation[0]][monsterLocation[1]] = 10;
 	}
-	else if(monsterLocation[1]<shape.j && board[monsterLocation[0]][monsterLocation[1]+1] != 4 && monsterLocation[1]<9){//one step to the down
+	else if(flag && monsterLocation[1]<shape.j && board[monsterLocation[0]][monsterLocation[1]+1] != 4 && monsterLocation[1]<9 && board[monsterLocation[0]][monsterLocation[1]+1] != 10){//one step to the down
 		if(monsterLocation[0] == shape.i && monsterLocation[1]+1 == shape.j){
+			flag = false;
 			monsterEatPacman();
 			Start();
 			return;
@@ -415,8 +434,9 @@ function updateMonsterLocaation(monsterLocation){
 		board[monsterLocation[0]][monsterLocation[1]] = 10;
 
 	}
-	else if (monsterLocation[0]>shape.i && board[monsterLocation[0]-1][monsterLocation[1]] != 4 && monsterLocation[0]>0){//one step left
+	else if (flag && monsterLocation[0]>shape.i && board[monsterLocation[0]-1][monsterLocation[1]] !=  4 && monsterLocation[0]>0 && board[monsterLocation[0]-1][monsterLocation[1]] !=  10){//one step left
 		if(monsterLocation[0]-1 == shape.i && monsterLocation[1] == shape.j){
+			flag = false;
 			monsterEatPacman();
 			Start();
 			return;
@@ -427,8 +447,9 @@ function updateMonsterLocaation(monsterLocation){
 		board[monsterLocation[0]][monsterLocation[1]] = 10;
 
 	}
-	else if(monsterLocation[1]>shape.j && board[monsterLocation[0]][monsterLocation[1]-1] != 4 && monsterLocation[1]>0){//one step to the up
+	else if(flag && monsterLocation[1]>shape.j && board[monsterLocation[0]][monsterLocation[1]-1] !=  4 && monsterLocation[1]>0 && board[monsterLocation[0]][monsterLocation[1]-1] !=  10){//one step to the up
 		if(monsterLocation[0] == shape.i && monsterLocation[1]-1 == shape.j){
+			flag = false;
 			monsterEatPacman();
 			Start();
 			return;
@@ -438,6 +459,11 @@ function updateMonsterLocaation(monsterLocation){
 		monsterLocation[2] = board[monsterLocation[0]][monsterLocation[1]];
 		board[monsterLocation[0]][monsterLocation[1]] = 10;
 	}
+	else if (flag){
+		flag = false;
+		movingPointRandomMove(monsterLocation,10);
+	}
+
 	
 	
 
@@ -479,6 +505,7 @@ function UpdatePosition() {
 	}
 	if (board[shape.i][shape.j] ==50){//moving Point
 		score+=50;
+		window.clearInterval(movingPointInterval);
 	}
 
 	board[shape.i][shape.j] = 2;
@@ -504,6 +531,15 @@ function UpdatePosition() {
 }
 
 function monsterEatPacman(){
+	// if (failsLeft == 0){
+	// 	alert("you lost the game");
+	// 	alert("you have reached: "+ score +" score");
+	// 	Start();
+	// }
+	// monster1Location = [0,0,0];
+	// monster2Location = [9,9,0];
+	// monster3Location = [0,9,0];
+	// monster4Location = [9,0,0];
 	window.clearInterval(interval);
 	window.clearInterval(monsterInterval);
 	window.clearInterval(movingPointInterval);
@@ -513,24 +549,31 @@ function monsterEatPacman(){
 }
 
 function movingPointRandomMove(){
+	movigObjectRandomMove(movingPointLocation,50);
+}
+
+function movigObjectRandomMove(object,symbol){//location, board number
 	var x=5;
 	var y=5;
-	while(x==y){
+	while(x==y || x==-y){
 		y=5;
 		x=5;
-		while ((x != 0  && x!=1 && x!=-1)) {//right and down
+		while ((x != 0  && x!=1 && x!=-1)) {
 			x = Math.floor(Math.random() *10)-5;
 		}
-		while ((y != 0  && y!=1 && y!=-1 )) {//right and down
+		while ((y != 0  && y!=1 && y!=-1 )) {
 			y = Math.floor(Math.random() *10)-5;
 		}
 	}
-	// if(board[movingPointLocation[0]+x][movingPointLocation[1]+y] != 4 && (9 < movingPointLocation[0]+x > 0) && (9 < movingPointLocation[1]+y > 0)){
-	// 	board[movingPointLocation[0]][movingPointLocation[1]] = movingPointLocation[2];
-	// 	movingPointLocation[0] = movingPointLocation[0] + x;
-	// 	movingPointLocation[1] = movingPointLocation[1] + y;
-	// 	movingPointLocation[2] = board[movingPointLocation[0]][movingPointLocation[1]];
-	// 	board[movingPointLocation[0]][movingPointLocation[1]] = 50;
-	// }
+	if(board[object[0]+x][object[1]+y] != 4 && (9 > object[0]+x > 0) &&  (9 > object[1]+y > 0)){
+
+		if (object[2] != 2 && object[2] != 10 && object[2] != 50){
+			board[object[0]][object[1]] = object[2];
+			object[0] +=  x;
+			object[1] +=  y;
+			object[2] = board[object[0]][object[1]];
+			board[object[0]][object[1]] = symbol;
+		}
+	}
 	
 }
