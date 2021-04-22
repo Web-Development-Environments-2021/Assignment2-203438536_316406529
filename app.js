@@ -2,7 +2,7 @@ var context;
 var shape = new Object();
 var board;
 var score;
-var failsLeft;
+var failsLeft = 5;
 var pac_color;
 var start_time;
 var time_elapsed;
@@ -11,6 +11,7 @@ var init_food_remain=50;
 var init_special_food_remain= 20;
 var food_remain;
 var special_food_remain;
+var lifeBalls = 2;
 var x_press = 0.15;
 var y_press =1.85;
 var eye_press_y;
@@ -52,6 +53,7 @@ var lastKey;
 5= special food
 10= monster
 50=movingPoints
+40= lifeBalls
 */
 // const context = canvas.getContext("2d");
 $(document).ready(function() {
@@ -175,6 +177,7 @@ function LogIn(){
 function earse(){
 	score = 0;
 	failsLeft = 5;
+	lifeBalls = 2;
 	food_remain = init_food_remain;
 	special_food_remain = init_special_food_remain;
 	window.clearInterval(interval);
@@ -236,15 +239,16 @@ function Start() {
 		board[emptyCell[0]][emptyCell[1]] = 1;
 		food_remain--;
 	}
-	while (special_food_remain > 0) {
+	while (special_food_remain > 0) {//special food
 		var emptyCell = findRandomEmptyCell(board);
-		if (board[emptyCell[0]][emptyCell[1]] != 1 ||board[emptyCell[0]][emptyCell[1]] != 2 || board[emptyCell[0]][emptyCell[1]] != 4){
-			board[emptyCell[0]][emptyCell[1]] = 5;
-			special_food_remain--;
-		}
-
+		board[emptyCell[0]][emptyCell[1]] = 5;
+		special_food_remain--;
 	}
-
+	while (lifeBalls > 0) {
+		var emptyCell = findRandomEmptyCell(board);//more life
+		board[emptyCell[0]][emptyCell[1]] = 40;
+		lifeBalls--;
+	}
 	//monster start locations
 	if(numberOfMonnsers>0){
 		board[monster1Location[0]][monster1Location[1]] = 10;
@@ -376,6 +380,12 @@ function Draw() {
 				context.fillStyle = "yellow"; //color
 				context.fill();
 			}
+			else if (board[i][j] == 40){//movingPoints
+				context.beginPath();
+				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
+				context.fillStyle = "blue"; //color
+				context.fill();
+			}
 
 			
 		}
@@ -403,7 +413,8 @@ function updateMonsterLocaation(monsterLocation){
 		var wallcrash = board[monsterLocation[0]+1][monsterLocation[1]] != 4;
 		var monsterCrash = board[monsterLocation[0]+1][monsterLocation[1]] != 10;
 		var specialPointCrash = board[monsterLocation[0]+1][monsterLocation[1]] != 50;
-		if (monsterLocation[0]<shape.i && wallcrash && monsterCrash && specialPointCrash){//one step to the right
+		var moreLife = board[monsterLocation[0]+1][monsterLocation[1]] != 40;
+		if (monsterLocation[0]<shape.i && wallcrash && monsterCrash && specialPointCrash && moreLife){//one step to the right
 			board[monsterLocation[0]][monsterLocation[1]] = monsterLocation[2];
 			monsterLocation[0]+= 1;
 			monsterLocation[2] = board[monsterLocation[0]][monsterLocation[1]];
@@ -417,8 +428,9 @@ function updateMonsterLocaation(monsterLocation){
 	if(flag && monsterLocation[1]<9){
 		var wallcrash = board[monsterLocation[0]][monsterLocation[1]+1] != 4;
 		var monsterCrash = board[monsterLocation[0]][monsterLocation[1]+1] != 10;
-		var specialPointCrash = board[monsterLocation[0]][monsterLocation[1]+1] != 50;
-		if(monsterLocation[1]<shape.j && wallcrash && monsterCrash && specialPointCrash){//one step to the down
+		var specialPointCrash = board[monsterLocation[0]][monsterLocation[1]+1] != 50;//extra point
+		var moreLife = board[monsterLocation[0]][monsterLocation[1]+1] != 40;//extra life
+		if(monsterLocation[1]<shape.j && wallcrash && monsterCrash && specialPointCrash && moreLife){//one step to the down
 			board[monsterLocation[0]][monsterLocation[1]] =  monsterLocation[2];
 			monsterLocation[1]+= 1;
 			monsterLocation[2] = board[monsterLocation[0]][monsterLocation[1]];
@@ -433,7 +445,9 @@ function updateMonsterLocaation(monsterLocation){
 		var wallcrash = board[monsterLocation[0]-1][monsterLocation[1]] !=  4;
 		var monsterCrash = board[monsterLocation[0]-1][monsterLocation[1]] !=  10;
 		var specialPointCrash = board[monsterLocation[0]-1][monsterLocation[1]] !=  50;
-		if (monsterLocation[0]>shape.i && wallcrash && monsterCrash && specialPointCrash){//one step left
+		var moreLife = board[monsterLocation[0]-1][monsterLocation[1]] !=  40;
+
+		if (monsterLocation[0]>shape.i && wallcrash && monsterCrash && specialPointCrash && moreLife){//one step left
 			board[monsterLocation[0]][monsterLocation[1]] =  monsterLocation[2];
 			monsterLocation[0]-= 1;
 			monsterLocation[2] = board[monsterLocation[0]][monsterLocation[1]];
@@ -448,7 +462,8 @@ function updateMonsterLocaation(monsterLocation){
 		wallcrash = board[monsterLocation[0]][monsterLocation[1]-1] !=  4;
 		monsterCrash = board[monsterLocation[0]][monsterLocation[1]-1] !=  10;
 		specialPointCrash = board[monsterLocation[0]][monsterLocation[1]-1] !=  50;
-		if(monsterLocation[1]>shape.j && wallcrash && monsterCrash && specialPointCrash){//one step to the up
+		moreLife = board[monsterLocation[0]][monsterLocation[1]-1] !=  40;
+		if(monsterLocation[1]>shape.j && wallcrash && monsterCrash && specialPointCrash && moreLife){//one step to the up
 			board[monsterLocation[0]][monsterLocation[1]] =  monsterLocation[2];
 			monsterLocation[1]-= 1;
 			monsterLocation[2] = board[monsterLocation[0]][monsterLocation[1]];
@@ -458,8 +473,7 @@ function updateMonsterLocaation(monsterLocation){
 				monsterEatPacman();
 			}
 		}
-	}
-	
+	}	
 	if (flag){
 		flag = false;
 		movigObjectRandomMove(monsterLocation,10);
@@ -497,19 +511,17 @@ function UpdatePosition() {
 		score+=5;
 	}
 	if (board[shape.i][shape.j] == 10) {//monster
-		// alert('packman eat monster');
 		x=5;
 		monsterEatPacman();
-		// keysDown[lastKey] = false;
-		// print(lastKey);
-		// interval = clearInterval(interval);
 		Draw();
-		// Start();
 		return;
 	}
 	if (board[shape.i][shape.j] ==50){//moving Point
 		score+=50;
 		window.clearInterval(movingPointInterval);
+	}
+	if (board[shape.i][shape.j] ==40){//life Point
+		failsLeft+=1;
 	}
 
 	board[shape.i][shape.j] = 2;
