@@ -7,7 +7,10 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
-
+var init_food_remain=50;
+var init_special_food_remain= 20;
+var food_remain;
+var special_food_remain;
 var x_press = 0.15;
 var y_press =1.85;
 var eye_press_y;
@@ -33,6 +36,8 @@ var movingPointInterval;
 var timer;
 //current user
 var playingNow;
+//last key press
+var lastKey;
 
 /*
 0 = empty
@@ -56,34 +61,57 @@ $(document).ready(function() {
 function displayWelcome(){
 	$('#Content').children().hide();
 	$('#welcome').show();
+	window.clearInterval(interval);
+	window.clearInterval(monsterInterval);
+	window.clearInterval(movingPointInterval);
+	window.clearInterval(monsterInterval);
 
 }
 
 function displayRegister(){
 	$('#Content').children().hide();
 	$('#Register').show();
+	window.clearInterval(interval);
+	window.clearInterval(monsterInterval);
+	window.clearInterval(movingPointInterval);
+	window.clearInterval(monsterInterval);
 }
-
 
 function displayLogin(){
 	$('#Content').children().hide();
 	$('#logIn').show();
+	window.clearInterval(interval);
+	window.clearInterval(monsterInterval);
+	window.clearInterval(movingPointInterval);
+	window.clearInterval(monsterInterval);
 }
 
 function displayConfig(){
 	$('#Content').children().hide();
 	$('#config').show();
+	window.clearInterval(interval);
+	window.clearInterval(monsterInterval);
+	window.clearInterval(movingPointInterval);
+	window.clearInterval(monsterInterval);
 }
 
 function displayAbout(){
 	$('#Content').children().hide();
 	$('#about').show();
+	window.clearInterval(interval);
+	window.clearInterval(monsterInterval);
+	window.clearInterval(movingPointInterval);
+	window.clearInterval(monsterInterval);
 }
 
 function displayGamePage(){
 	context = canvas.getContext("2d");
 	$('#Content').children().hide();
 	$('#gamePage').show();
+	window.clearInterval(interval);
+	window.clearInterval(monsterInterval);
+	window.clearInterval(movingPointInterval);
+	window.clearInterval(monsterInterval);
 	earse();
 	Start();
 }
@@ -126,6 +154,7 @@ function submitRegister(){
 }
 
 function LogIn(){
+
 	let logInUserName = document.getElementById("logInUserName").value;
 	let logInPass = document.getElementById("logInPass").value;
 	let detailCheck = checkLogInDetails(logInUserName,logInPass);
@@ -139,45 +168,15 @@ function LogIn(){
 	}
 }
 
-function fullNameValidation(fullName){
-	alert("enter fullname func");
-
-	// var matches = fullName.match(/\d+/g);
-	if (/\d/.test(fullName)) {
-   	 	alert('fullName contains number');	
-		return false;
-	}
-	else{
-		return true;
-	}
-}
-
-function passwordValidation(pass){
-	alert("enter pass func");
-	var passForm =  /^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/;
-	alert("pass 2");
-	if(pass.match(passForm)){
-		alert("valid pass");
-		return true;
-	}
-	alert("Please enter a valid password.\n(At least 6 characters, at least one digit and one letter)");
-	return false;
-}
-
-function emailValidation(email){
-	alert("enter email func");
-	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-	if(emailReg.test(email)){
-		return true;
-	}
-	else{
-		alert("Please enter valid email.");
-		return false;
-	}
-}
 function earse(){
 	score = 0;
 	failsLeft = 5;
+	food_remain = init_food_remain;
+	special_food_remain = init_special_food_remain;
+	window.clearInterval(interval);
+	window.clearInterval(monsterInterval);
+	window.clearInterval(movingPointInterval);
+	window.clearInterval(monsterInterval);
 
 }
 
@@ -197,8 +196,6 @@ function Start() {
 
 	pac_color = "yellow";
 	var cnt = 100;
-	var food_remain = 50;
-	var special_food_remain = 2;
 	var pacman_remain = 1;
 	start_time = new Date();
 	for (var i = 0; i < 10; i++) {
@@ -265,6 +262,7 @@ function Start() {
 	addEventListener(
 		"keydown",
 		function(e) {
+			lastKey = e.keyCode;
 			keysDown[e.keyCode] = true;
 		},
 		false
@@ -278,7 +276,7 @@ function Start() {
 	);
 	monsterInterval = setInterval(mostersLocationsUpdate,1000);
 	interval = setInterval(UpdatePosition, 300);
-	movingPointInterval = setInterval(movingPointRandomMove, 800);
+	// movingPointInterval = setInterval(movingPointRandomMove, 800);
 }
 
 function findRandomEmptyCell(board) {
@@ -329,11 +327,7 @@ function Draw() {
 	}
 	currUser.value = playingNow;
 	lifeRemain.value = failsLeft;
-	movingPointRandomMove();
-
-  
 	// movingPointRandomMove();
-
   
 	// updateMonsterLocaation(monster1Location);
 	for (var i = 0; i < 10; i++) {
@@ -400,68 +394,72 @@ function mostersLocationsUpdate(){
 }
 
 function updateMonsterLocaation(monsterLocation){
-	// if(monsterLocation[0]==shape.i){//wanna go down/up
-	// 	if(board[monsterLocation[0]+1][monsterLocation[1]] != 4){//go right
-
-	// 	}
-	// 	else{//go left
-
-	// 	}
-	// }
 	var flag = true;
 	if (flag && monsterLocation[0]<shape.i && board[monsterLocation[0]+1][monsterLocation[1]] != 4 && monsterLocation[0]<9 && board[monsterLocation[0]+1][monsterLocation[1]] != 10){//one step to the right
-		if(monsterLocation[0]+1 == shape.i && monsterLocation[1] == shape.j){
-			flag = false;
-			monsterEatPacman();
-			Start();
-			return;
-		}
+
 		board[monsterLocation[0]][monsterLocation[1]] = monsterLocation[2];
 		monsterLocation[0]+= 1;
 		monsterLocation[2] = board[monsterLocation[0]][monsterLocation[1]];
 		board[monsterLocation[0]][monsterLocation[1]] = 10;
-	}
-	else if(flag && monsterLocation[1]<shape.j && board[monsterLocation[0]][monsterLocation[1]+1] != 4 && monsterLocation[1]<9 && board[monsterLocation[0]][monsterLocation[1]+1] != 10){//one step to the down
-		if(monsterLocation[0] == shape.i && monsterLocation[1]+1 == shape.j){
-			flag = false;
+		flag = false;
+		if(monsterLocation[0] == shape.i && monsterLocation[1] == shape.j){
+			// alert('moster Eat-right');
+
 			monsterEatPacman();
-			Start();
-			return;
+
+			// Start();
+			// return;
 		}
+	}
+	if(flag && monsterLocation[1]<shape.j && board[monsterLocation[0]][monsterLocation[1]+1] != 4 && monsterLocation[1]<9 && board[monsterLocation[0]][monsterLocation[1]+1] != 10){//one step to the down
+
 		board[monsterLocation[0]][monsterLocation[1]] =  monsterLocation[2];
 		monsterLocation[1]+= 1;
 		monsterLocation[2] = board[monsterLocation[0]][monsterLocation[1]];
 		board[monsterLocation[0]][monsterLocation[1]] = 10;
-
-	}
-	else if (flag && monsterLocation[0]>shape.i && board[monsterLocation[0]-1][monsterLocation[1]] !=  4 && monsterLocation[0]>0 && board[monsterLocation[0]-1][monsterLocation[1]] !=  10){//one step left
-		if(monsterLocation[0]-1 == shape.i && monsterLocation[1] == shape.j){
-			flag = false;
+		flag = false;
+		if(monsterLocation[0] == shape.i && monsterLocation[1] == shape.j){
+			// alert('moster Eat - down');
 			monsterEatPacman();
-			Start();
-			return;
+			// Start();
+			// return;
 		}
+	}
+	if (flag && monsterLocation[0]>shape.i && board[monsterLocation[0]-1][monsterLocation[1]] !=  4 && monsterLocation[0]>0 && board[monsterLocation[0]-1][monsterLocation[1]] !=  10){//one step left
+
 		board[monsterLocation[0]][monsterLocation[1]] =  monsterLocation[2];
 		monsterLocation[0]-= 1;
 		monsterLocation[2] = board[monsterLocation[0]][monsterLocation[1]];
 		board[monsterLocation[0]][monsterLocation[1]] = 10;
+		flag = false;
 
-	}
-	else if(flag && monsterLocation[1]>shape.j && board[monsterLocation[0]][monsterLocation[1]-1] !=  4 && monsterLocation[1]>0 && board[monsterLocation[0]][monsterLocation[1]-1] !=  10){//one step to the up
-		if(monsterLocation[0] == shape.i && monsterLocation[1]-1 == shape.j){
-			flag = false;
+		if(monsterLocation[0] == shape.i && monsterLocation[1] == shape.j){
+			// alert('moster Eat-left');
 			monsterEatPacman();
-			Start();
-			return;
+
+			// Start();
+			// return;
 		}
+	}
+	if(flag && monsterLocation[1]>shape.j && board[monsterLocation[0]][monsterLocation[1]-1] !=  4 && monsterLocation[1]>0 && board[monsterLocation[0]][monsterLocation[1]-1] !=  10){//one step to the up
+
 		board[monsterLocation[0]][monsterLocation[1]] =  monsterLocation[2];
 		monsterLocation[1]-= 1;
 		monsterLocation[2] = board[monsterLocation[0]][monsterLocation[1]];
 		board[monsterLocation[0]][monsterLocation[1]] = 10;
-	}
-	else if (flag){
 		flag = false;
-		movingPointRandomMove(monsterLocation,10);
+
+		if(monsterLocation[0] == shape.i && monsterLocation[1] == shape.j){
+			// alert('moster Eat-up');
+			monsterEatPacman();
+			// Start();
+			// return;
+		}
+	}
+	if (flag){
+		flag = false;
+		// alert('random move');
+		movigObjectRandomMove(monsterLocation,10);
 	}
 
 	
@@ -499,8 +497,14 @@ function UpdatePosition() {
 		score+=5;
 	}
 	if (board[shape.i][shape.j] == 10) {//monster
+		// alert('packman eat monster');
+		x=5;
 		monsterEatPacman();
-		Start();
+		// keysDown[lastKey] = false;
+		// print(lastKey);
+		// interval = clearInterval(interval);
+		Draw();
+		// Start();
 		return;
 	}
 	if (board[shape.i][shape.j] ==50){//moving Point
@@ -520,7 +524,7 @@ function UpdatePosition() {
 	if (score >= 20 && time_elapsed <= 10) {
 		pac_color = "green";
 	}
-	if (score == 50) {
+	if (score >= 50) {
 		window.clearInterval(interval);
 		window.clearInterval(monsterInterval);
 		window.clearInterval(movingPointInterval);
@@ -531,21 +535,56 @@ function UpdatePosition() {
 }
 
 function monsterEatPacman(){
-	// if (failsLeft == 0){
-	// 	alert("you lost the game");
-	// 	alert("you have reached: "+ score +" score");
-	// 	Start();
-	// }
+	if (failsLeft == 0){
+		alert("you lost the game");
+		alert("you have reached: "+ score +" score");
+		earse();
+		Start();
+	}
+	// board[monster1Location[0]][monster1Location[1]] = monster1Location[2];
 	// monster1Location = [0,0,0];
 	// monster2Location = [9,9,0];
 	// monster3Location = [0,9,0];
 	// monster4Location = [9,0,0];
-	window.clearInterval(interval);
-	window.clearInterval(monsterInterval);
-	window.clearInterval(movingPointInterval);
-	failsLeft-=1;
-	score-=10;
-	window.clearInterval(monsterInterval);
+	// window.clearInterval(interval);
+	// window.clearInterval(monsterInterval);
+	// window.clearInterval(movingPointInterval);
+	// window.clearInterval(monsterInterval);
+	// alert('enter monster eat func');
+	failsLeft -= 1;
+	score -= 10;
+	board[shape.i][shape.j] = 0;
+	keysDown[lastKey]=false;
+	keysDown={};
+	i=4;
+	j=4;
+	shape.i=i;
+	shape.j=j;
+	board[shape.i][shape.j] = 2;
+	// alert(numberOfMonnsers);
+	if(numberOfMonnsers>0){
+		board[monster1Location[0]][monster1Location[1]] = 0;
+		monster1Location = [0,0,0];
+		board[monster1Location[0]][monster1Location[1]] = 10;
+	}
+	if(numberOfMonnsers>1){
+		board[monster2Location[0]][monster2Location[1]] = 0;
+		monster2Location = [9,9,0];
+		board[monster2Location[0]][monster2Location[1]] = 10;
+	}
+	if(numberOfMonnsers>2){
+		board[monster3Location[0]][monster3Location[1]] =0;
+		monster3Location = [0,9,0];
+		board[monster3Location[0]][monster3Location[1]] = 10;
+	}
+	if(numberOfMonnsers>3){
+		board[monster4Location[0]][monster4Location[1]] = 0;
+		monster4Location = [9,0,0];
+		board[monster4Location[0]][monster4Location[1]] = 10;
+	}
+
+	// Draw();
+
 }
 
 function movingPointRandomMove(){
@@ -577,3 +616,40 @@ function movigObjectRandomMove(object,symbol){//location, board number
 	}
 	
 }
+
+// function fullNameValidation(fullName){
+// 	alert("enter fullname func");
+
+// 	// var matches = fullName.match(/\d+/g);
+// 	if (/\d/.test(fullName)) {
+//    	 	alert('fullName contains number');	
+// 		return false;
+// 	}
+// 	else{
+// 		return true;
+// 	}
+// }
+
+// function passwordValidation(pass){
+// 	alert("enter pass func");
+// 	var passForm =  /^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/;
+// 	alert("pass 2");
+// 	if(pass.match(passForm)){
+// 		alert("valid pass");
+// 		return true;
+// 	}
+// 	alert("Please enter a valid password.\n(At least 6 characters, at least one digit and one letter)");
+// 	return false;
+// }
+
+// function emailValidation(email){
+// 	alert("enter email func");
+// 	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+// 	if(emailReg.test(email)){
+// 		return true;
+// 	}
+// 	else{
+// 		alert("Please enter valid email.");
+// 		return false;
+// 	}
+// }
