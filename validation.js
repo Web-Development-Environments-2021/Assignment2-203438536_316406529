@@ -21,6 +21,7 @@ $(function() {
     });
   
     $.validator.addMethod('strongPassword', function(value, element) {
+        alert("enter pass valid");
       return this.optional(element) 
         || value.length >= 6
         && /\d/.test(value)
@@ -28,15 +29,18 @@ $(function() {
     }, 'Your password must be at least 6 characters long and contain at least one number and one char\'.')
 
     $.validator.addMethod('userExist',function(value, element){
-        alert("enter user vaild");
-        return checkIfUsernameExist(value);
+       
+        // alert("enter user vaild");
+        var checkUserNamrValid = checkIfUsernameExist(value);
+        // alert(checkUserNamrValid);
+        return checkUserNamrValid;
     },'The user name is already exist in the system.')
 
     $("#register-form").validate({
       rules: {
         userName:{
           required:true,
-          usreExist:true,  
+          userExist:true,  
         },
         email: {
           required: true,
@@ -61,28 +65,6 @@ $(function() {
           nowhitespace: true,
           lettersonly: true
         },
-        // businessName: {
-        //   required: true
-        // },
-        // phone: {
-        //   required: true,
-        //   digits: true,
-        //   phonesUK: true
-        // },
-        // address: {
-        //   required: true
-        // },
-        // town: {
-        //   required: true,
-        //   lettersonly: true
-        // },
-        // postcode: {
-        //   required: true,
-        //   postcodeUK: true
-        // },
-        // terms: {
-        //   required: true
-        // }
       },
       messages: {
         email: {
@@ -100,13 +82,11 @@ $(function() {
   
   });
   function checkIfUsernameExist(username){
-    alert("enter usercheck func");
-
-    //return true if already username exist
+      //return true if the user name is OK, false- if the user name already exist.
     let usreExist = usersDB.some((user)=>user.userName == username);
     if( usreExist){
-        return true;
+        return false;
         alert("user already exist in system")
     }
-    return false;
+    return true;
 }
