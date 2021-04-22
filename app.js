@@ -223,10 +223,12 @@ function Start() {
 					food_remain--;
 					board[i][j] = 1;
 				} else if (randomNum < (1.0 * (pacman_remain + food_remain)) / cnt) {
-					shape.i = i;
-					shape.j = j;
-					pacman_remain--;
-					board[i][j] = 2;
+					if(!((i==9 && j==9) || (i==0 && j==0) || (i==0 && j==9) || (i==9 && j==0))){
+						shape.i = i;
+						shape.j = j;
+						pacman_remain--;
+						board[i][j] = 2;
+					}
 				} else {
 					board[i][j] = 0;
 				}
