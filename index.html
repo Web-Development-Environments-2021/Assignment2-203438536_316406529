@@ -181,27 +181,32 @@
 				  </dialog>
 			</div>
 			<div id="gamePage">
-				<div id="score">
-					<label for="lblScore">SCORE:</label>
-					<input id="lblScore" type="text" />
-				</div>
-				<div id="time">
-					<label for="lblTime">TIME:</label>
-					<input id="lblTime" type="text" />
-					<br>
-					<label for=lblRemain">Remain time:</label>
-					<input id="lblRemain" type="text"/>
-				</div>
-				<div id="currentUser">
-					<label for="lblUserPlaying">current user is:</label>
-					<input id="currUser" type="text"/>
-				</div>
-				<div id="numOfLifeRemain">
-					<label for="lblLifeRemain">Life remain:</label>
-					<input id="lifeRemain" type="text"/>
+				<div id="gameData">
+					<div id="score">
+						<label for="lblScore">SCORE:</label>
+						<input id="lblScore" type="text" />
+					</div>
+					<div id="time">
+						<label for="lblTime">TIME:</label>
+						<input id="lblTime" type="text" />
+						<br>
+						<label for=lblRemain">Remain time:</label>
+						<input id="lblRemain" type="text"/>
+					</div>
+					<div id="currentUser">
+						<label for="lblUserPlaying">current user is:</label>
+						<input id="currUser" type="text"/>
+					</div>
+					<div id="numOfLifeRemain">
+						<label for="lblLifeRemain">Life remain:</label>
+						<input id="lifeRemain" type="text"/>
+					</div>
 				</div>
 				<div id="game">
 					<canvas id="canvas" height="500" width="500"></canvas>
+				</div>
+				<div id="quiqeGame">
+					<button type="button"onclick= "displayGamePage()">quiqe Game</button>
 				</div>
 			</div>
 
