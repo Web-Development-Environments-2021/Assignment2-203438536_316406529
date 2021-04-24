@@ -117,40 +117,40 @@ function displayGamePage(){
 }
 
 function submitRegister(){
-	alert("enter submit func")
-	let userName = document.getElementById("userName").value;
-	let pass = document.getElementById("password").value;
-	let fullName = document.getElementById("fullName").value;
-	let email = document.getElementById("email").value;
-	let birthDay = document.getElementById("birthDay").value;
-	let usernameCheck = checkIfUsernameExist(userName);
-	if(usernameCheck){
-		alert("UserName already exist in system, please choose log-in or register.");
-		displayWelcome();
-		return;
-	}
-	let passCheck = passwordValidation(pass);
-	if(!passCheck){
-		alert("invalid password, make sure your password contains minimun 6 char, letters and numbers");
-		return;
-	}
-	let fullnameCheck = fullNameValidation(fullNameValidation);
-	let emailCheck = emailValidation(email);
+	// alert("enter submit func")
+	// let userName = document.getElementById("userName").value;
+	// let pass = document.getElementById("password").value;
+	// let fullName = document.getElementById("fullName").value;
+	// let email = document.getElementById("email").value;
+	// let birthDay = document.getElementById("birthDay").value;
+	// let usernameCheck = checkIfUsernameExist(userName);
+	// if(usernameCheck){
+	// 	alert("UserName already exist in system, please choose log-in or register.");
+	// 	displayWelcome();
+	// 	return;
+	// }
+	// let passCheck = passwordValidation(pass);
+	// if(!passCheck){
+	// 	alert("invalid password, make sure your password contains minimun 6 char, letters and numbers");
+	// 	return;
+	// }
+	// let fullnameCheck = fullNameValidation(fullNameValidation);
+	// let emailCheck = emailValidation(email);
 
-	if(passCheck & fullnameCheck  & emailCheck  & !usernameCheck){
-		usersDB.push({
-			username: userName,
-			password: pass,
-			fullName: fullName,
-			email: email,
-			birthDate: birthDay
-		});
-		alert("User " + userName + " successfuly sign in!");
-		displayGamePage();
-	}
-	else{
-		alert("Error!");
-	}
+	// if(passCheck & fullnameCheck  & emailCheck  & !usernameCheck){
+	// 	usersDB.push({
+	// 		username: userName,
+	// 		password: pass,
+	// 		fullName: fullName,
+	// 		email: email,
+	// 		birthDate: birthDay
+	// 	});
+	// 	alert("User " + userName + " successfuly sign in!");
+	// 	displayGamePage();
+	// }
+	// else{
+	// 	alert("Error!");
+	// }
 }
 
 function LogIn(){

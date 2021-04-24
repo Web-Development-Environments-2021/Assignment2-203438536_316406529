@@ -50,3 +50,8 @@ function setBallsColor(){
     let lowBall = $('#color5Ball').val();
     alert(highBall);
 }
+
+function setNumOfmonsters(){
+    var numMonster = document.getElementById("numMonster").value;
+    numberOfMonnsers = numMonster;
+}
