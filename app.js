@@ -669,9 +669,10 @@ function movigObjectRandomMove(object,symbol){//location, board number
 		if ((object[0] + x) < width && (object[1] +y) < hight){
 			var monsterCrash = board[object[0]+x][object[1]+y] == 10 && symbol==50;
 			var specialPointCrash = board[object[0]+x][object[1]+y] == 50 && symbol==10;
+			var mostermonsterCreash = board[object[0]+x][object[1]+y] == 10 && symbol==10;
 			var wallcrash = board[object[0]+x][object[1]+y] == 4;
 			var packmanCrash = board[object[0]+x][object[1]+y] == 2;
-			if(!monsterCrash && !specialPointCrash && !wallcrash &&! packmanCrash){
+			if(!monsterCrash && !specialPointCrash && !wallcrash && !packmanCrash && !mostermonsterCreash){
 				
 				board[object[0]][object[1]] = object[2];
 				object[0] +=  x;
@@ -686,44 +687,4 @@ function movigObjectRandomMove(object,symbol){//location, board number
 		y=5;	
 	}	
 }
-
-// function fullNameValidation(fullName){
-// 	alert("enter fullname func");
-
-// 	// var matches = fullName.match(/\d+/g);
-// 	if (/\d/.test(fullName)) {
-//    	 	alert('fullName contains number');	
-// 		return false;
-// 	}
-// 	else{
-// 		return true;
-// 	}
-// }
-
-// function passwordValidation(pass){
-// 	alert("enter pass func");
-// 	var passForm =  /^(?=.*\d)(?=.*[a-zA-Z]).{6,}$/;
-// 	alert("pass 2");
-// 	if(pass.match(passForm)){
-// 		alert("valid pass");
-// 		return true;
-// 	}
-// 	alert("Please enter a valid password.\n(At least 6 characters, at least one digit and one letter)");
-// 	return false;
-// }
-
-// function emailValidation(email){
-// 	alert("enter email func");
-// 	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-// 	if(emailReg.test(email)){
-// 		return true;
-// 	}
-// 	else{
-// 		alert("Please enter valid email.");
-// 		return false;
-// 	}
-// }
-
-
-//dialog check
 
