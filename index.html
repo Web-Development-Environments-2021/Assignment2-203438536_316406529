@@ -23,46 +23,99 @@
 		</div>
 		<div id="Content" align="center">
 			<div id="welcome">
-				<button type="button" onclick="displayLogin()">log-in</button>
+				<button type="button" onclick="displayLogin()">Log-in</button>
 				<button type="button"onclick= "displayRegister()">Register</button>
-				<button type="button"onclick= "displayGamePage()">game</button>
+				<button type="button"onclick= "displayGamePage()">Game</button>
 
 			</div>
 			<div id="Register">
-				<div class="container well" style="margin-top: 50px">
+				<div class="container well">
 					<form id="register-form">
 					  <fieldset>
-						<legend>Sign up!</legend>
-					  </fieldset>
-					  <p>Please fill all the fields below</p>
-					  <div class="form-group col-md-12">
-						<input class="form-control" id="userNameIn" name="userName" placeholder="Username" type="text">
-					  </div>
-					  <div class="form-group col-md-12">
-						<input class="form-control" id="emailIn" name="email" placeholder="Email address" type="email">
-					  </div>
-					  <div class="form-group col-md-6">
-						<input class="form-control" name="password" id="password" placeholder="Password" type="password">
-					  </div>
-					  <div class="form-group col-md-6">
-						<input class="form-control" name="password2" placeholder="Re-enter password" type="password">
-					  </div>
-					  <div class="clearfix">
-					  </div>
-					  <p>Tell us about yourself</p>
-					  <div class="form-group col-md-6">
-						<input class="form-control" id="firstNameIn" name="firstName" placeholder="First name" type="text">
-					  </div>
-					 <div class="form-group col-md-6">
-					   <input class="form-control" name="secondName" placeholder="Last name" type="text">
-					 </div>
-					 <div class="form-group col-md-6">
-						 <p>Birthday: <input type="date" id="datepicker"></p>
-					 </div>
+						<legend>Sign up</legend>
+					  <h2>Please fill all the fields below</h2>
+					  <table>
+						  <tbody>
+							  <tr>
+								  <td width="25%">
+									<label for="logInUserName"><b>User-Name:</b></label>
+								  </td>
+								  <td width ="75%">
+									<div class="form-group col-md-12">
+										<input class="form-control" id="userNameIn" name="userName" placeholder="Username" type="text">
+									  </div>
+								  </td>
+							  </tr>
+							  <tr>
+								  <td>
+									<label for="logInUserName"><b>Email address:</b></label>
+								  </td>
+								  <td>
+									<div class="form-group col-md-12">
+										<input class="form-control" id="emailIn" name="email" placeholder="Email address" type="email">
+									  </div>
+								  </td>
+							  </tr>
+							  <tr>
+								  <td>
+									<label for="logInUserName"><b>Password:</b></label>
+								  </td>
+								  <td>
+									<div class="form-group col-md-6">
+										<input class="form-control" name="password" id="password" placeholder="Password" type="password">
+									  </div>
+								  </td>
+							  </tr>
+							  <tr>
+								  <td>
+									<label for="logInUserName"><b>Re-enter password:</b></label>
+								  </td>
+								  <td>
+									<div class="form-group col-md-6">
+										<input class="form-control" name="password2" placeholder="Re-enter password" type="password">
+									  </div>
+								  </td>
+							  </tr>
+							  <tr>
+								  <td colspan="2" align="center">
+									<h2>Tell us about yourself</h2>
+								  </td>
+							  </tr>
+							  <tr>
+								  <td>
+									<label for="logInUserName"><b>First name:</b></label>
+								  </td>
+								  <td>
+									<div class="form-group col-md-6">
+										<input class="form-control" id="firstNameIn" name="firstName" placeholder="First name" type="text">
+									  </div>
+								  </td>
+							  </tr>
+							  <tr>
+								  <td>
+									<label for="logInUserName"><b>Last name:</b></label>
+								  </td>
+								  <td>
+									<div class="form-group col-md-6">
+										<input class="form-control" name="secondName" placeholder="Last name" type="text">
+									  </div>
+								  </td>
+							  </tr>
+
+						  </tbody>
+					  </table>
+					  <br>					
+					  <label for="Birthday"><b>Birthday:</b></label>
+					  <input class="form-control" type="date" id="datepicker">
+					  <br>
+					  <br>
+
 					  <div>
 						<input class="btn btn-primary" id="submit-button" type="submit" value="Sign Up" onclick="submitRegister()">
 					  </div>
-				
+					  <div class="clearfix">
+					  </div>
+					</fieldset>
 					</form>
 				  </div>
 				  
@@ -73,17 +126,39 @@
 
 			</div>
 			<div id="logIn">
-				<h1>logIn</h1>
-				<br>
-				<label for="logInUserName"><b>Username</b></label>
-				<input type="text" placeholder="Enter Username" name="Uname" id="logInUserName" required>
-				<br>
-				<label for="logInPass"><b>Password</b></label>
-				<input type="text" placeholder="Enter Password" name="pass" id="logInPass" required>
-				<br>
-				<div id = "LogInButton">
-					<button type="button" class="LogInButton" onclick="LogIn()">Log-In</button>
-				</div>
+				<fieldset>
+					<legend>Log-In</legend>
+					<h2>Please enter log-in details</h2>
+					<br>
+					<table>
+						<tbody>
+							<tr>
+								<td width=50%>
+									<label for="logInUserName"><b>User-Name:</b></label>
+								</td>
+								<td width=50%>
+									<input type="text" placeholder="Enter Username" name="Uname" id="logInUserName" required>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="logInPass"><b>Password:</b></label>
+								</td>
+								<td>
+									<input type="text" placeholder="Enter Password" name="pass" id="logInPass" required>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<br>
+					<br>
+					<br>
+					<br>
+					<div id = "LogInButton">
+						<button type="button" class="LogInButton" onclick="LogIn()">Log-In</button>
+					</div>
+				</fieldset>
+
 			</div>
 
 			<div id="config">
@@ -166,33 +241,73 @@
 				  </dialog>
 			</div>
 			<div id="gamePage">
-				<div id="gameData">
-					<div id="score">
-						<label for="lblScore">SCORE:</label>
-						<input id="lblScore" type="text" />
-					</div>
-					<div id="time">
-						<label for="lblTime">TIME:</label>
-						<input id="lblTime" type="text" />
-						<br>
-						<label for=lblRemain">Remain time:</label>
-						<input id="lblRemain" type="text"/>
-					</div>
-					<div id="currentUser">
-						<label for="lblUserPlaying">current user is:</label>
-						<input id="currUser" type="text"/>
-					</div>
-					<div id="numOfLifeRemain">
-						<label for="lblLifeRemain">Life remain:</label>
-						<input id="lifeRemain" type="text"/>
-					</div>
-				</div>
-				<div id="game">
-					<canvas id="canvas" height="500" width="500"></canvas>
-				</div>
-				<div id="quiqeGame">
-					<button type="button"onclick= "displayGamePage()">quiqe Game</button>
-				</div>
+				<table>
+					<tbody>
+						<tr>
+							<td>
+								<div id="gameData">
+									<table>
+										<tbody>
+											<tr>
+												<td width = 33%>
+													<div id="score" align="center">
+														<label for="lblScore">Score:</label>
+														<br>
+														<input id="lblScore" type="text" />
+													</div>
+												</td>
+												<td width=33%>
+													<div align="center">
+														<label for="lblTime">Time:</label>
+														<br>
+														<input id="lblTime" type="text" />
+													</div>
+												</td>
+												<td width=33% align="center">
+													<label for=lblRemain">Remain Time:</label>
+													<br>
+													<input id="lblRemain" type="text"/>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<table>
+										<tbody>
+											<tr>
+												<td width=50% align="center">
+													<div id="currentUser">
+														<label for="lblUserPlaying">Current User Is:</label>
+														<br>
+														<input id="currUser" type="text"/>
+													</div>
+												</td>
+												<td width=50% align="center">
+													<div id="numOfLifeRemain">
+														<label for="lblLifeRemain">Life remain:</label>
+														<br>
+														<input id="lifeRemain" type="text"/>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</td>
+							<td>
+								<div id="quiqeGame">
+									<button type="button"onclick= "displayGamePage()">Quick Game</button>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div id="game">
+									<canvas id="canvas" height="500" width="700"></canvas>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 
 		</div>
