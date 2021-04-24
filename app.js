@@ -121,7 +121,7 @@ function displayConfig(){
 		if (event.target == modal) {
 			modal.style.display = "none";
 		}
-	}
+	};
 	//close id ESC press
 	window.addEventListener('keyup', function(event) {
 		// If  ESC key was pressed...
@@ -150,7 +150,7 @@ function displayAbout(){
 		if (event.target == modal) {
 			modal.style.display = "none";
 		}
-	}
+	};
 	//close id ESC press
 	window.addEventListener('keyup', function(event) {
 		// If  ESC key was pressed...
