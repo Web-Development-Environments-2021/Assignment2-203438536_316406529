@@ -7,7 +7,8 @@
 		<link rel="stylesheet" type="text/css" href="validForm.css" />
 
 		<script type="text/javascript" src="userdsHndle.js"></script>
-		<script type="text/javascript" src="config.js"></script>
+		<script type="text/javascript" src="config.js"></script>\
+		
 	</head>
 
 	<body>
@@ -19,7 +20,8 @@
 			<menuButton onclick="displayRegister()">Register</menuButton>
 			<menuButton onclick="displayLogin()">Login</menuButton>
 			<menuButton onclick="displayConfig()">Configuration</menuButton>
-			<menuButton onclick="displayAbout()">About</menuButton>
+			<menuButton onclick="displayAbout()" id="menuAbout">About</menuButton>
+			
 		</div>
 		<div id="Content" align="center">
 			<div id="welcome">
@@ -162,83 +164,98 @@
 			</div>
 
 			<div id="config">
-				<h1>Define the keys to move with!</h1>
-				<div id="chooseKeys">
-					<h2>Key up:</h2>
-					<input type="text" id="upKey" maxlength="1" placeholder="Tap key to move up with" required> 
-					<br>
-					<h2>Key down:</h2>
-					<input type="text" id="downKey"  maxlength="1" placeholder="Tap key to move down with" required>
-					<br>
-					<h2>Key right:</h2>
-					<input type="text" id="rightKey"  maxlength="1" placeholder="Tap key to move right with" required>
-					<br>
-					<h2>Key left:</h2>
-					<input type="text" id="leftKey"  maxlength="1" placeholder="Tap key to move left with" required>
-					<br>
-					<div>
-						<button type="button" class="setKeysButton" onclick="setKeyToGame()">Apply</button>
-						<button type="button" onclick="setDefault()">Reset(defaul)</button>
+				<div id="myModalConfig" class="modal">
+					<div class="modal-content">
+						<span class="close">&times;</span>
+
+						<h1>Define the keys to move with!</h1>
+						<div id="chooseKeys">
+							<h2>Key up:</h2>
+							<input type="text" id="upKey" maxlength="1" placeholder="Tap key to move up with" required> 
+							<br>
+							<h2>Key down:</h2>
+							<input type="text" id="downKey"  maxlength="1" placeholder="Tap key to move down with" required>
+							<br>
+							<h2>Key right:</h2>
+							<input type="text" id="rightKey"  maxlength="1" placeholder="Tap key to move right with" required>
+							<br>
+							<h2>Key left:</h2>
+							<input type="text" id="leftKey"  maxlength="1" placeholder="Tap key to move left with" required>
+							<br>
+							<div>
+								<button type="button" class="setKeysButton" onclick="setKeyToGame()">Apply</button>
+								<button type="button" onclick="setDefault()">Reset(defaul)</button>
+							</div>
+						</div>
+						<div>
+							<!-- to check -->
+							<h2>Choose number of balls:</h2>
+							<input type="number" placeholder="Number of balls" id="numOfBalls">
+							<div>
+								<button type="button" onclick="setNumberOfBalls()">Apply</button>
+							</div>
+							
+						</div>
+						<div>
+							<h2>Choose time for the game</h2>
+							<input type="number" placeholder="Set time for game" id="timerInput">
+							<div><button onclick="setTimer()">Apply</button></div> 
+						</div>
+						<div>
+							<h2>Please choose the colors of the balls:</h2>
+							<div>
+								<lable for="lblColorHighBall">25(points):</lable>
+								<input type="color" id="color25Ball"/>	
+							</div>
+							<div>
+								<lable for="lblColorMedBall">15(points):</lable>
+								<input type="color" id="color15Ball"/>	
+							</div>
+							<div>
+								<lable for="lblColorLowBall">5(points):</lable>
+								<input type="color" id="color5Ball"/>	
+							</div>
+							<div>
+								<button type="button" onclick="setBallsColor()">Apply</button>
+							</div>
+							<div>
+								<h2>Please choose number of monter:</h2>
+								<div>
+									<label for="lblNumOfMosnters">Number of monster:</label>
+									<input id="numMonster" type="number" min="1" max="4" placeholder="Type number in range of 1-4">
+									<button type="button" onclick="setNumOfmonsters()">Apply</button>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div>
-					<!-- to check -->
-					<h2>Choose number of balls:</h2>
-					<input type="number" placeholder="Number of balls" id="numOfBalls">
-					<div>
-						<button type="button" onclick="setNumberOfBalls()">Apply</button>
-					</div>
-					
-				</div>
-				<div>
-					<h2>Choose time for the game</h2>
-					<input type="number" placeholder="Set time for game" id="timerInput">
-					<div><button onclick="setTimer()">Apply</button></div> 
-				</div>
-				<div>
-					<h2>Please choose the colors of the balls:</h2>
-					<div>
-						<lable for="lblColorHighBall">25(points):</lable>
-						<input type="color" id="color25Ball"/>	
-					</div>
-					<div>
-						<lable for="lblColorMedBall">15(points):</lable>
-						<input type="color" id="color15Ball"/>	
-					</div>
-					<div>
-						<lable for="lblColorLowBall">5(points):</lable>
-						<input type="color" id="color5Ball"/>	
-					</div>
-					<div>
-						<button type="button" onclick="setBallsColor()">Apply</button>
-					</div>
-				</div>
-				<div>
-					<h2>Please choose number of monter:</h2>
-					<div>
-						<label for="lblNumOfMosnters">Number of monster:</label>
-						<input id="numMonster" type="number" min="1" max="4" placeholder="Type number in range of 1-4">
-						<button type="button" onclick="setNumOfmonsters()">Apply</button>
-					</div>
-				</div>
+				
 			</div>
+			
 			<div id="about">
-				<dialog id="favDialog">
-					<form method="dialog">
-					  <p><label>Favorite animal:
-						<select>
-						  <option></option>
-						  <option>Brine shrimp</option>
-						  <option>Red panda</option>
-						  <option>Spider monkey</option>
-						</select>
-					  </label></p>
-					  <menu>
-						<button value="cancel">Cancel</button>
-						<button id="confirmBtn" value="default">Confirm</button>
-					  </menu>
-					</form>
-				  </dialog>
+				<!-- <button id="myBtn" onclick="testDialog()">Open Modal</button> -->
+
+				<!-- The Modal -->
+				<div id="myModal" class="modal">
+
+					<!-- Modal content -->
+					<div class="modal-content">
+						<span id="closeAbout">&times;</span>
+						<aboutTitle>About</aboutTitle>
+						<aboutText>Aviran Giat and Noam Kotlar.</aboutText>
+						<br>
+						<aboutText>The Jquery plugins we used in this assignment was 'validator' in the register submit. </aboutText>
+					</div>
+
+				</div>
+
+				<!-- <div id="myModal" class="modal" weight=300px height=300px>
+					<div class="modal-content">
+					  <span class="close" onclick="closeDialog()">&times;</span>
+					  <p>Some text in the Modal..</p>
+					</div>
+				  
+				  </div> -->
 			</div>
 			<div id="gamePage">
 				<table>

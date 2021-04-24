@@ -99,16 +99,61 @@ function displayConfig(){
 	window.clearInterval(monsterInterval);
 	window.clearInterval(movingPointInterval);
 	window.clearInterval(monsterInterval);
+	var modal = document.getElementById("myModalConfig");
+	var span = document.getElementsByClassName("close")[0];
+
+	modal.style.display = "block";
+	span.onclick = function() {
+		modal.style.display = "none";
+	}
+	//close if click outside the modal
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+	//close id ESC press
+	window.addEventListener('keyup', function(event) {
+		// If  ESC key was pressed...
+		if (event.keyCode == 27) {
+			// try close your dialog
+			modal.style.display = "none";
+		}
+	});
 }
+
+
 
 function displayAbout(){
 	$('#Content').children().hide();
 	$('#about').show();
-	window.clearInterval(interval);
-	window.clearInterval(monsterInterval);
-	window.clearInterval(movingPointInterval);
-	window.clearInterval(monsterInterval);
+	// window.clearInterval(interval);
+	// window.clearInterval(monsterInterval);
+	// window.clearInterval(movingPointInterval);
+	// window.clearInterval(monsterInterval);
+	var modal = document.getElementById("myModal");
+	var span = document.getElementsByClassName("close")[1];
+
+	modal.style.display = "block";
+	span.onclick = function() {
+		modal.style.display = "none";
+	}
+	//close if click outside the modal
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+	//close id ESC press
+	window.addEventListener('keyup', function(event) {
+		// If  ESC key was pressed...
+		if (event.keyCode == 27) {
+			// try close your dialog
+			modal.style.display = "none";
+		}
+	});
 }
+
 
 function displayGamePage(){
 	context = canvas.getContext("2d");
@@ -388,8 +433,6 @@ function Draw() {
 				context.fillStyle = "blue"; //color
 				context.fill();
 			}
-
-			
 		}
 	}
 }
@@ -680,3 +723,7 @@ function movigObjectRandomMove(object,symbol){//location, board number
 // 		return false;
 // 	}
 // }
+
+
+//dialog check
+
