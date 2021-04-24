@@ -21,7 +21,7 @@ $(function() {
     });
   
     $.validator.addMethod('strongPassword', function(value, element) {
-        alert("enter pass valid");
+        // alert("enter pass valid");
       return this.optional(element) 
         || value.length >= 6
         && /\d/.test(value)
@@ -65,6 +65,9 @@ $(function() {
           nowhitespace: true,
           lettersonly: true
         },
+        birthDate:{
+            required: true
+        }
       },
       messages: {
         email: {
@@ -82,11 +85,53 @@ $(function() {
   
   });
   function checkIfUsernameExist(username){
-      //return true if the user name is OK, false- if the user name already exist.
-    let usreExist = usersDB.some((user)=>user.userName == username);
-    if( usreExist){
-        return false;
-        alert("user already exist in system")
+      //true- valid username, false- already exist
+      for(var i=0; i < usersDB.length; i++ ){
+          var check = usersDB[i].userName;
+          if(usersDB[i].userName == username){
+              return false;
+          }
+      }
+      return true;
+};
+
+function submitRegister(){
+    // alert($('#register-form').valid());
+    if ($('#register-form').valid()){
+        alert($('#userNameIn').val());
+        usersDB.push({
+            userName: $('#userNameIn').val(),
+            password: $('#password').val(),
+            fullName: $('#firstNameIn').val(),
+            email: $('#emailIn').val(),
+            birthDate: new Date($('#datepicker').val())
+        });
+        // $('register-form').data('validate').resetForm();
+        // clearValidation($('register-form'));
+        // document.getElementById('register-form').reset()
+        // $('register-form').resetForm();
+
+        // document.getElementById("userNameIn").value = "";
+        // document.getElementById("password").value = "";
+        // document.getElementById("firstNameIn").value = "";
+        // document.getElementById("emailIn").value = "";
+        // document.getElementById("datepicker").value = "";
+
+
     }
-    return true;
 }
+function clearValidation(formElement){
+    //Internal $.validator is exposed through $(form).validate()
+    var validator = $('register-form').validate();
+    //Iterate through named elements inside of the form, and mark them as error free
+    $('[name]',formElement).each(function(){
+      validator.successList.push(this);//mark as error free
+      validator.showErrors();//remove error messages if present
+    });
+    validator.resetForm();//remove error class on name elements and clear history
+    validator.reset();//remove all error and success data
+   }
+   //used
+   var myForm = document.getElementById("register-form");
+   clearValidation(myForm);
+
