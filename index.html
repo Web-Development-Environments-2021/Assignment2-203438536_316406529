@@ -165,11 +165,10 @@
 				<div id="myModalConfig" class="modal">
 					<div class="modal-content">
 						<span class="close">&times;</span>
-
-						<h1>Configuration setup</h1>
+						<h1 style="color:rgb(32, 133, 99)">Configuration setup</h1>
 						<div id="chooseKeys">
 							<h2>Please choose key to move the pacman</h2>
-							<h3>Type the arrow buttun and then type any key to define the movement.</h3>
+							<h3>Type the arrow button and then type any key to define the movement.</h3>
 							<table width=70% border="1">
 								<tr>
 									<td>
@@ -210,13 +209,12 @@
 						<table>
 							<tr>
 								<td>
-								
 								<!-- Number of balls setting -->
 								<div>
-									<h2>Choose number of balls:</h2>
-									<input type="number" placeholder="Number of balls(50-90)" id="numOfBalls">
+									<h3>Choose number of balls:</h3>
+									<input type="number" placeholder="Number of balls(50-90)" min="50" max="90" step="5" id="numOfBalls">
 									<div>
-										<button type="button" onclick="setNumberOfBalls()">Apply</button>
+										<!-- <button type="button" onclick="setNumberOfBalls()">Apply</button> -->
 									</div>
 									
 								</div>
@@ -224,16 +222,16 @@
 								<td>
 									<!-- Timer setting -->
 									<div> 
-										<h2>Choose time for the game</h2>
-										<input type="number" placeholder="Set time for game" id="timerInput">
-										<div><button onclick="setTimer()">Apply</button></div> 
+										<h3>Choose time for the game</h3>
+										<input type="number" placeholder="Set time for game" min="60" max="150" step="5" id="timerInput">
+										<!-- <div><button onclick="setTimer()">Apply</button></div>  -->
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td>
 									<div>
-										<h2>Please choose the colors of the balls:</h2>
+										<h3>Please choose the colors of the balls:</h3>
 										<div>
 											<lable for="lblColorHighBall">25(points):</lable>
 											<input type="color" id="color25Ball"/>	
@@ -246,24 +244,27 @@
 											<lable for="lblColorLowBall">5(points):</lable>
 											<input type="color" id="color5Ball"/>	
 										</div>
-										<div>
+										<!-- <div>
 											<button type="button" onclick="setBallsColor()">Apply</button>
-										</div>
+										</div> -->
 									</div>
 								</td>
 								<td>
 									<!-- balls color -->
 									<div>
-										<h2>Please choose number of monter:</h2>
+										<h3>Please choose number of monster:</h3>
 										<div>
 											<label for="lblNumOfMosnters">Number of monster:</label>
-											<input id="numMonster" type="number" min="1" max="4" placeholder="Type number in range of 1-4">
-											<button type="button" onclick="setNumOfmonsters()">Apply</button>
+											<input id="numMonster" type="number" min="1" max="4" step="1" placeholder="Type number in range of 1-4">
+											<!-- <button type="button" onclick="setNumOfmonsters()">Apply</button> -->
 										</div>
 									</div>
 								</td>
 							</tr>
 						</table>
+						<div align="center">
+							<button type="button" onclick="ApplyConfig()">Apply!</button>
+						</div>
 					</div>
 				</div>
 			</div>	

@@ -173,6 +173,8 @@ function displayGamePage(){
 	// window.clearInterval(monsterInterval);
 	// window.clearInterval(movingPointInterval);
 	// window.clearInterval(monsterInterval);
+	$('#Content').children().hide();
+	$('#gamePage').show();
 	earse();
 	Start();
 	var time_start_wait = new Date();

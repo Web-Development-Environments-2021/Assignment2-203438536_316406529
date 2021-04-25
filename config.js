@@ -30,37 +30,26 @@ function setDefault(){
 }
 
 function setNumberOfBalls(){
-    // food_remain = document.getElementById("numOfBalls").value;
     init_food_remain = Number($('#numOfBalls').val());
-    alert(init_food_remain);
-    // alert(food_remain);
-    document.getElementById("numOfBalls").value ='';
 }
 
 function setTimer(){
-    alert("enter timer set")
-    // alert(val(document.getElementById="timerInput"));
-    // alert($('#timerInput').val());
     timer = Number($('#timerInput').val());
-    // alert(timer);
-    // alert(typeof timer);
-    document.getElementById('timerInput').value="";
 }
 
 function setBallsColor(){
-    // let highBall = $('#color25Ball').val();
-    // let medBall = $('#color15Ball').val();
-    // let lowBall = $('#color5Ball').val();
     color5p = $('#color5Ball').val();
     color15p = $('#color15Ball').val();
     color25p =  $('#color25Ball').val();
-    alert(highBall);
 }
 
 function setNumOfmonsters(){
     var numMonster = document.getElementById("numMonster").value;
     numberOfMonnsers = numMonster;
 }
+
+//keys definition 
+
 const usedKeys= [];
 var lastUp;
 var lastDown;
@@ -152,4 +141,14 @@ function removeKeyFromArray(item){
             break;
         }
     }
+}
+
+
+
+function ApplyConfig(){
+    setNumberOfBalls();
+    setTimer();
+    setBallsColor();
+    setNumOfmonsters();
+    displayGamePage();
 }
