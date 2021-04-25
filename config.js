@@ -30,6 +30,7 @@ function setDefault(){
 function setNumberOfBalls(){
     // food_remain = document.getElementById("numOfBalls").value;
     init_food_remain = Number($('#numOfBalls').val());
+    alert(init_food_remain);
     // alert(food_remain);
     document.getElementById("numOfBalls").value ='';
 }
@@ -58,27 +59,46 @@ function setNumOfmonsters(){
     var numMonster = document.getElementById("numMonster").value;
     numberOfMonnsers = numMonster;
 }
-
+const usedKeys= [];
+var lastUp;
+var lastDown;
+var lastRight;
+var lastLeft;
 function keyUpSet(){
     addEventListener('keydown',function up(e) {
-        // $('lblKeyUpID').value = e.keyCode;
-        // lblKeyUpIn.value = e.keyCode;
-        keyUp = e.keyCode;
-        lblKeyUpIn.value = String.fromCharCode(e.keyCode);
+        e.preventDefault();
+        if(usedKeys.includes(e.keyCode)){
+            alert("This key is already in use..");
+        }
+        else{
+            if(lastUp != undefined){
+                removeKeyFromArray(lastUp);
+            }
+            lastUp = e.keyCode;
+            usedKeys.push(e.keyCode);
+            keyUp = e.keyCode;
+            lblKeyUpIn.value = e.key;
+            document.getElementById('btnDown').disabled=false;
+        }
         removeEventListener('keydown',up);
     })
-    
 }
 function keyDownSet(){
     addEventListener('keydown',function down(e) {
-        // $('lblKeyUpID').value = e.keyCode;
-        // lblKeyUpIn.value = e.keyCode;
-        if(e.keyCode == keyUp){
-            alert("choose another");
+        e.preventDefault();
+        if(usedKeys.includes(e.keyCode)){
+            alert("This key is already in use..");
         }
-        else{
+        else{    
+            if(lastDown != undefined){
+                removeKeyFromArray(lastDown);
+            }
+            lastDown = e.keyCode;     
+            usedKeys.push(e.keyCode);
             keyDown = e.keyCode;
-            lblKeyDownIn.value = String.fromCharCode(e.keyCode);
+            lblKeyDownIn.value = e.key;
+            document.getElementById('btnRight').disabled=false;
+
         }
         removeEventListener('keydown',down);
     })
@@ -87,29 +107,47 @@ function keyDownSet(){
 
 function keyRightSet(){
     addEventListener('keydown', function right(e) {
-        // $('lblKeyUpID').value = e.keyCode;
-        // lblKeyUpIn.value = e.keyCode;
-        if(e.keyCode == keyUp && e.keyCode == keyDown){
-            alert("choose another");
+        e.preventDefault();
+        if(usedKeys.includes(e.keyCode)){
+            alert("This key is already in use..");
         }
         else{
+            if(lastRight != undefined){
+                removeKeyFromArray(lastRight);
+            }
+            lastRight = e.keyCode;
+            usedKeys.push(e.keyCode);
             keyRight = e.keyCode;
-            lblKeyRightIn.value = String.fromCharCode(e.keyCode);
+            lblKeyRightIn.value = e.key;
         }
         removeEventListener('keydown', right);
+        document.getElementById('btnLeft').disabled=false;
+
     })
 }
 function keyLeftSet(){
     addEventListener('keydown',function left(e) {
-        // $('lblKeyUpID').value = e.keyCode;
-        // lblKeyUpIn.value = e.keyCode;
-        if(e.keyCode == keyUp || e.keyCode == keyDown || e.keyCode == keyRight){
-            alert("choose another");
+        e.preventDefault();
+        if(usedKeys.includes(e.keyCode)){
+            alert("This key is already in use..");
         }
         else{
+            if(lastLeft != undefined){
+                removeKeyFromArray(lastLeft);
+            }
+            lastLeft = e.keyCode;
+            usedKeys.push(e.keyCode);
             keyLeft = e.keyCode;
-            lblKeyLeftIn.value = String.fromCharCode(e.keyCode);
+            lblKeyLeftIn.value = e.key;
         }
         removeEventListener('keydown', left);
     })
+}
+function removeKeyFromArray(item){
+    for(var i in usedKeys){
+        if(usedKeys[i]==item){
+            usedKeys.splice(i,1);
+            break;
+        }
+    }
 }

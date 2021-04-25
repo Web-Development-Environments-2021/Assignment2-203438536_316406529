@@ -65,7 +65,7 @@ $(function() {
           nowhitespace: true,
           lettersonly: true
         },
-        birthDate:{
+        birthDay:{
             required: true
         }
       },
@@ -110,13 +110,11 @@ function submitRegister(){
         document.getElementById("userNameIn").value = "";
         document.getElementById("password").value = "";
         document.getElementById("passwordRe").value = "";
-
         document.getElementById("firstNameIn").value = "";
         document.getElementById("emailIn").value = "";
         document.getElementById("datepicker").value = "";
         document.getElementById("lastnameIn").value = "";
-
-        
+        displayLogin();
 
     }
 }

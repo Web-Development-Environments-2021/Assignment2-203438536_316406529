@@ -108,7 +108,7 @@
 					  </table>
 					  <br>					
 					  <label for="Birthday"><b>Birthday:</b></label>
-					  <input class="form-control" type="date" id="datepicker">
+					  <input name="birthDay" class="form-control" type="date" id="datepicker">
 					  <br>
 					  <br>
 
@@ -179,7 +179,7 @@
 									</td>
 									<td>
 										<div>
-											<button id='btnDown' type="button" onclick="keyDownSet()" style="font-size:x-large;">&darr;</button>
+											<button id='btnDown' type="button" onclick="keyDownSet()" style="font-size:x-large;" disabled>&darr;</button>
 											<label for="lblKeyDown">Your choose is:</label>
 											<input type="text" id="lblKeyDownIn"/>
 
@@ -189,14 +189,14 @@
 								<tr>
 									<td>
 										<div>
-											<button id='btnRight' type="button" onclick="keyRightSet()" style="font-size:x-large;">&rarr;</button>
+											<button id='btnRight' type="button" onclick="keyRightSet()" style="font-size:x-large;" disabled>&rarr;</button>
 											<label for="lblKeyRight">Your choose is:</label>
 											<input type="text" id="lblKeyRightIn"/>
 										</div>
 									</td>
 									<td>
 										<div>
-											<button id='btnLeft' type="button" onclick="keyLeftSet()" style="font-size:x-large;">&larr;</button>
+											<button id='btnLeft' type="button" onclick="keyLeftSet()" style="font-size:x-large;" disabled>&larr;</button>
 											<label for="lblKeyLeft">Your choose is:</label>
 											<input type="text" id="lblKeyLeftIn"/>
 										</div>
@@ -268,7 +268,7 @@
 				</div>
 				
 			</div>			
-			<div id="about">
+			<div id="about" >
 				<!-- The Modal -->
 				<div id="myModal" class="modal">
 
@@ -276,8 +276,10 @@
 					<div class="modal-content">
 						<span class="close">&times;</span>
 						<br>
-						<aboutTitle>About</aboutTitle>
 						<aboutText>Aviran Giat and Noam Kotlar.</aboutText>
+						<br>
+						<br>
+						<br>
 						<br>
 						<aboutText>The Jquery plugins we used in this assignment was 'validator' in the register submit. </aboutText>
 					</div>
