@@ -47,6 +47,7 @@ var movingPointInterval;
 
 //timer
 var timer=60;
+var initTime = 60;
 //current user
 var playingNow;
 //last key press
@@ -197,6 +198,7 @@ function earse(){
 	score = 0;
 	failsLeft = 5;
 	lifeBalls = 2;
+	timer = initTime;
 	food_remain = init_food_remain;
 	fivePointFoorRemain = food_remain*0.6;
 	fifteenPointFoodRemain = food_remain*0.3;
@@ -208,6 +210,7 @@ function earse(){
 }
 
 function Start() {
+	timer = initTime;
 	food_remain = init_food_remain;
 	fivePointFoorRemain = food_remain*0.6;
 	fifteenPointFoodRemain = food_remain*0.3;
@@ -229,52 +232,70 @@ function Start() {
 	var cnt = width*10;
 	var pacman_remain = 1;
 	start_time = new Date();
-	for (var i = 0; i < width; i++) {
+	for(var i =0; i<width;i++){
 		board[i] = new Array();
-		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
-		for (var j = 0; j < hight; j++) {
-			if (
-				(i == 2 && j == 3) ||
-				(i == 2 && j == 4) ||
-				(i == 2 && j == 5) ||
-				(i == 6 && j == 1) ||
-				(i == 6 && j == 2) ||
-				(i == 3 && j == 5) ||
-				(i == 11 && j == 7) ||
-				(i == 12 && j == 7) ||
-				(i == 13 && j == 7) ||
-				(i == 12 && j == 8) ||
-				(i == 1 && j == 8) ||
-				(i == 2 && j == 8) ||
-				(i == 3 && j == 8) ||
-				(i == 11 && j == 2) ||
-				(i == 11 && j == 3) ||
-				(i == 11 && j == 4) ||
-				(i == 7 && j == 7) ||
-				(i == 6 && j == 7) ||
-				(i == 8 && j == 4) ||
-				(i == 10 && j == 7)
-			) {
-				board[i][j] = 4;
-			} else {
-				var randomNum = Math.random();
-				if (randomNum <= (1.0 * food_remain) / cnt) {
-					food_remain--;
-					// board[i][j] = 1;
-				} else if (randomNum < (1.0 * (pacman_remain + food_remain)) / cnt) {
-					if(!((i==width-1 && j==hight-1) || (i==0 && j==0) || (i==0 && j==hight-1) || (i==width-1 && j==0))){
-						shape.i = i;
-						shape.j = j;
-						pacman_remain--;
-						board[i][j] = 2;
-					}
-				} else {
-					board[i][j] = 0;
-				}
-				cnt--;
-			}
+		for(var j =0; j<hight;j++){
+			board[i][j] = 0
 		}
 	}
+	walls();
+	while(pacman_remain>0){
+		var emptyCell = findRandomEmptyCell(board);
+		if(!((i==width-1 && j==hight-1) || (i==0 && j==0) || (i==0 && j==hight-1) || (i==width-1 && j==0))){
+			shape.i = emptyCell[0];
+			shape.j = emptyCell[1];
+			pacman_remain--;
+			board[emptyCell[0]][emptyCell[1]] = 2;
+			break;
+		}
+	}
+
+	// for (var i = 0; i < width; i++) {
+	// 	board[i] = new Array();
+	// 	//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
+	// 	for (var j = 0; j < hight; j++) {
+	// 		if (
+	// 			(i == 2 && j == 3) ||
+	// 			(i == 2 && j == 4) ||
+	// 			(i == 2 && j == 5) ||
+	// 			(i == 6 && j == 1) ||
+	// 			(i == 6 && j == 2) ||
+	// 			(i == 3 && j == 5) ||
+	// 			(i == 11 && j == 7) ||
+	// 			(i == 12 && j == 7) ||
+	// 			(i == 13 && j == 7) ||
+	// 			(i == 12 && j == 8) ||
+	// 			(i == 1 && j == 8) ||
+	// 			(i == 2 && j == 8) ||
+	// 			(i == 3 && j == 8) ||
+	// 			(i == 11 && j == 2) ||
+	// 			(i == 11 && j == 3) ||
+	// 			(i == 11 && j == 4) ||
+	// 			(i == 7 && j == 7) ||
+	// 			(i == 6 && j == 7) ||
+	// 			(i == 8 && j == 4) ||
+	// 			(i == 10 && j == 7)
+	// 		) {
+	// 			board[i][j] = 4;
+	// 		} else {
+	// 			var randomNum = Math.random();
+	// 			if (randomNum <= (1.0 * food_remain) / cnt) {
+	// 				food_remain--;
+	// 				// board[i][j] = 1;
+	// 			} else if (randomNum < (1.0 * (pacman_remain + food_remain)) / cnt) {
+	// 				if(!((i==width-1 && j==hight-1) || (i==0 && j==0) || (i==0 && j==hight-1) || (i==width-1 && j==0))){
+	// 					shape.i = i;
+	// 					shape.j = j;
+	// 					pacman_remain--;
+	// 					board[i][j] = 2;
+	// 				}
+	// 			} else {
+	// 				board[i][j] = 0;
+	// 			}
+	// 			cnt--;
+	// 		}
+	// 	}
+	// }
 	while (fivePointFoorRemain > 0) {
 		var emptyCell = findRandomEmptyCell(board);
 		board[emptyCell[0]][emptyCell[1]] = 5;
@@ -337,6 +358,29 @@ function Start() {
 	movingPointInterval = setInterval(movingPointRandomMove, 800);
 }
 
+function walls(){
+	board[2][3] = 4;
+	board[2][4] = 4;
+	board[2][5] = 4;
+	board[6][1] = 4;
+	board[6][2] = 4;
+	board[3][5] = 4;
+	board[11][7] = 4;
+	board[12][7] = 4;
+	board[13][7] = 4;
+	board[12][8] = 4;
+	board[1][8] = 4;
+	board[2][8] = 4;
+	board[3][8] = 4;
+	board[11][2] = 4;
+	board[11][3] = 4;
+	board[11][4] = 4;
+	board[7][7] = 4;
+	board[6][7] = 4;
+	board[10][7] = 4;
+	board[8][4] = 4;
+}
+
 function findRandomEmptyCell(board) {
 	var i = Math.floor(Math.random() * (width) );
 	var j = Math.floor(Math.random() * (hight) );
@@ -380,10 +424,10 @@ function Draw() {
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
 	numberOfBalls.value = init_food_remain;
-	GameInitTIme.value = timer;
-	fivePointBall.value = "red";
-	fifteenPointBall.value = "pink";
-	twentyFivePointBall.value = "black";
+	GameInitTIme.value = initTime;
+	fivePointBall.value = color5p;
+	fifteenPointBall.value = color15p;
+	twentyFivePointBall.value = color25p;
 	monstersNum.value = numberOfMonnsers;
 
 
@@ -409,7 +453,7 @@ function Draw() {
 				context.fill();
 			} else if (board[i][j] == 5) {//5 point circle
 				context.beginPath();
-				context.arc(center.x, center.y, 5, 0, 2 * Math.PI); // circle black 1 point
+				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle black 1 point
 				context.fillStyle = color5p; //color
 				context.fill();
 			} else if (board[i][j] == 15){//special 15 points
@@ -419,7 +463,7 @@ function Draw() {
 				context.fill();
 			} else if (board[i][j] == 25){//special 25 points
 				context.beginPath();
-				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle green 5 points
+				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle green 5 points
 				context.fillStyle = color25p; //color
 				context.fill();
 			}else if (board[i][j] == 4) {//wall
@@ -437,8 +481,10 @@ function Draw() {
 			}
 			else if (board[i][j] == 50){//movingPoints
 				context.beginPath();
-				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle yellow 50 points
-				context.fillStyle = "yellow"; //color
+				const specialPoints = document.getElementById('50points');
+				context.drawImage(specialPoints,center.x-20, center.y-20,40,40);
+				// context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle yellow 50 points
+				// context.fillStyle = "yellow"; //color
 				context.fill();
 			}
 			else if (board[i][j] == 40){//life
