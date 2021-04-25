@@ -46,7 +46,7 @@ var movingPointLocation = new Array(3);
 var movingPointInterval;
 
 //timer
-var timer;
+var timer=60;
 //current user
 var playingNow;
 //last key press
@@ -135,9 +135,9 @@ function displayConfig(){
 function displayAbout(){
 	$('#Content').children().hide();
 	$('#about').show();
-	// window.clearInterval(interval);
-	// window.clearInterval(monsterInterval);
-	// window.clearInterval(movingPointInterval);
+	window.clearInterval(interval);
+	window.clearInterval(monsterInterval);
+	window.clearInterval(movingPointInterval);
 	var modal = document.getElementById("myModal");
 	var span = document.getElementsByClassName("close")[1];
 
@@ -172,7 +172,6 @@ function displayGamePage(){
 	earse();
 	Start();
 }
-
 
 function LogIn(){
 
@@ -256,7 +255,7 @@ function Start() {
 				var randomNum = Math.random();
 				if (randomNum <= (1.0 * food_remain) / cnt) {
 					food_remain--;
-					board[i][j] = 1;
+					// board[i][j] = 1;
 				} else if (randomNum < (1.0 * (pacman_remain + food_remain)) / cnt) {
 					if(!((i==width-1 && j==hight-1) || (i==0 && j==0) || (i==0 && j==hight-1) || (i==width-1 && j==0))){
 						shape.i = i;
@@ -291,6 +290,10 @@ function Start() {
 		board[emptyCell[0]][emptyCell[1]] = 40;
 		lifeBalls--;
 	}
+	var emptyCell = findRandomEmptyCell(board);//more time
+	board[emptyCell[0]][emptyCell[1]] = 12;
+	var emptyCell = findRandomEmptyCell(board);//more time
+	board[emptyCell[0]][emptyCell[1]] = 12;
 	//monster start locations
 	if(numberOfMonnsers>0){
 		board[monster1Location[0]][monster1Location[1]] = 10;
@@ -330,11 +333,11 @@ function Start() {
 }
 
 function findRandomEmptyCell(board) {
-	var i = Math.floor(Math.random() * (width-1) + 1);
-	var j = Math.floor(Math.random() * (hight-1) + 1);
+	var i = Math.floor(Math.random() * (width) );
+	var j = Math.floor(Math.random() * (hight) );
 	while (board[i][j] != 0) {
-		i = Math.floor(Math.random() * (width-1) + 1);
-		j = Math.floor(Math.random() * (hight-1) + 1);
+		i = Math.floor(Math.random() * (width) );
+		j = Math.floor(Math.random() * (hight) );
 	}
 	return [i, j];
 }
@@ -371,15 +374,19 @@ function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
+	numberOfBalls.value = init_food_remain;
+	GameInitTIme.value = timer;
+	fivePointBall.value = "red";
+	fifteenPointBall.value = "pink";
+	twentyFivePointBall.value = "black";
+	monstersNum.value = numberOfMonnsers;
+
 
   if(timer!=null){
 		lblRemain.value = timer-time_elapsed;	
 	}
 	currUser.value = playingNow;
-	lifeRemain.value = failsLeft;
-	// movingPointRandomMove();
-  
-	// updateMonsterLocaation(monster1Location);
+	lifeRemain.value = failsLeft;	
 	for (var i = 0; i < width; i++) {
 		for (var j = 0; j < hight; j++) {
 			var center = new Object();
@@ -417,8 +424,10 @@ function Draw() {
 				context.fill();
 			} else if (board[i][j] == 10){//monster
 				context.beginPath();
-				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle res monsters
-				context.fillStyle = "red"; //color
+				const monster = document.getElementById('monster');
+				context.drawImage(monster,center.x-20, center.y-20,40,40);
+				// context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle res monsters
+				// context.fillStyle = "red"; //color
 				context.fill();
 			}
 			else if (board[i][j] == 50){//movingPoints
@@ -427,10 +436,20 @@ function Draw() {
 				context.fillStyle = "yellow"; //color
 				context.fill();
 			}
-			else if (board[i][j] == 40){//movingPoints
+			else if (board[i][j] == 40){//life
 				context.beginPath();
-				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
-				context.fillStyle = "blue"; //color
+				const life = document.getElementById('life');
+				context.drawImage(life,center.x-30, center.y-30,60,60);
+				// context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
+				// context.fillStyle = "blue"; //color
+				context.fill();
+			}
+			else if (board[i][j] == 12){//more time
+				context.beginPath();
+				const clock = document.getElementById('clock');
+				context.drawImage(clock,center.x-20, center.y-20,40,40);
+				// context.arc(center.x, center.y, 20, 0, 2 * Math.PI); // clock
+				// context.fillStyle = "pint"; //color
 				context.fill();
 			}
 		}
@@ -571,7 +590,9 @@ function UpdatePosition() {
 	if (board[shape.i][shape.j] ==40){//life Point
 		failsLeft+=1;
 	}
-
+	if (board[shape.i][shape.j] ==12){//more time
+		timer+=12;
+	}
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
