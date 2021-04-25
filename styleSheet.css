@@ -96,6 +96,9 @@ fieldset{
 table{
     width: 100%;
 }
+#logInTable{
+    width: 50%;
+}
 
 /* Modal Header */
 .modal-header {

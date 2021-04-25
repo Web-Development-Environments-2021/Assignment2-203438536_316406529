@@ -132,7 +132,7 @@
 					<legend>Log-In</legend>
 					<h2>Please enter log-in details</h2>
 					<br>
-					<table>
+					<table id='logInTable'>
 						<tbody>
 							<tr>
 								<td width=50%>
@@ -161,7 +161,6 @@
 					</div>
 				</fieldset>
 			</div>
-
 			<div id="config">
 				<div id="myModalConfig" class="modal">
 					<div class="modal-content">
@@ -229,8 +228,7 @@
 					</div>
 				</div>
 				
-			</div>
-			
+			</div>			
 			<div id="about">
 				<!-- The Modal -->
 				<div id="myModal" class="modal">
@@ -247,6 +245,18 @@
 				</div>
 			</div>
 			<div id="gamePage">
+				<div style="display:none;">
+					<img id="clock"
+						 src="clock.png">
+				  </div>
+				  <div style="display:none;">
+					<img id="monster"
+						 src="monster.png">
+				  </div>
+				  <div style="display:none;">
+					<img id="life"
+						 src="Life.png">
+				  </div>
 				<table>
 					<tbody>
 						<tr>
@@ -310,6 +320,39 @@
 								<div id="game">
 									<canvas id="canvas" height="500" width="750"></canvas>
 								</div>
+							</td>
+							<td>
+								<div id="monstersNum" align="center">
+									<label for="monstersNum">Number of Monsters:</label>
+									<br>
+									<input id="monstersNum" type="text" />
+								</div>
+								<div id="numberOfBalls" align="center">
+									<label for="numberOfBalls">Number of balls:</label>
+									<br>
+									<input id="numberOfBalls" type="text" />
+								</div>
+								<div id="gameTIme" align="center">
+									<label for="GameInitTIme">Game initial time:</label>
+									<br>
+									<input id="GameInitTIme" type="text" />
+								</div>
+								<div id="fivePointBall" align="center">
+									<label for="fivePointBall">five points ball color:</label>
+									<br>
+									<input id="fivePointBall" type="text" />
+								</div>
+								<div id="fifteenPointBall" align="center">
+									<label for="fifteenPointBall">Fifteen points ball color:</label>
+									<br>
+									<input id="fifteenPointBall" type="text" />
+								</div>
+								<div id="twentyFivePointBall" align="center">
+									<label for="twentyFivePointBall">Twenty-Five points ball color:</label>
+									<br>
+									<input id="twentyFivePointBall" type="text" />
+								</div>
+
 							</td>
 						</tr>
 					</tbody>
