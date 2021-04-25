@@ -135,7 +135,7 @@ function displayConfig(){
 		if (event.target == modal) {
 			modal.style.display = "none";
 		}
-		$('#welcome').show();
+		// $('#welcome').show();
 
 	};
 	//close id ESC press
@@ -167,7 +167,7 @@ function displayAbout(){
 		if (event.target == modal) {
 			modal.style.display = "none";
 		}
-		$('#welcome').show();
+		// $('#welcome').show();
 	};
 	//close id ESC press
 	window.addEventListener('keyup', function(event) {
