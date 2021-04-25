@@ -16,10 +16,10 @@
 			<img src="logo.png" alt="PACMAN" width=400px height=100px>
 		</div>
 		<div id="Menu">
-			<menuButton onclick="displayWelcome()">Welcome</menuButton>
-			<menuButton onclick="displayRegister()">Register</menuButton>
-			<menuButton onclick="displayLogin()">Login</menuButton>
-			<menuButton onclick="displayConfig()">Configuration</menuButton>
+			<menuButton onclick="displayWelcome()" id="menuWelcome">Welcome</menuButton>
+			<menuButton onclick="displayRegister()" id="menuRegister">Register</menuButton>
+			<menuButton onclick="displayLogin()" id="menuLogin">Login</menuButton>
+			<menuButton onclick="displayConfig()" id="menuConfig" >Configuration</menuButton>
 			<menuButton onclick="displayAbout()" id="menuAbout">About</menuButton>
 			
 		</div>
@@ -28,8 +28,8 @@
 				<button type="button" onclick="displayLogin()">Log-in</button>
 				<button type="button"onclick= "displayRegister()">Register</button>
 				<button type="button"onclick= "displayGamePage()">Game</button>
-
 			</div>
+
 			<div id="Register">
 				<div class="container well">
 					<form id="register-form">
@@ -212,7 +212,7 @@
 								<!-- Number of balls setting -->
 								<div>
 									<h3>Choose number of balls:</h3>
-									<input type="number" placeholder="Number of balls(50-90)" min="50" max="90" step="5" id="numOfBalls">
+									<input type="number" placeholder="Type here" min="50" max="90" step="5"  style="width:100px;" id="numOfBalls">
 									<div>
 										<!-- <button type="button" onclick="setNumberOfBalls()">Apply</button> -->
 									</div>
@@ -223,7 +223,7 @@
 									<!-- Timer setting -->
 									<div> 
 										<h3>Choose time for the game</h3>
-										<input type="number" placeholder="Set time for game" min="60" max="150" step="5" id="timerInput">
+										<input type="number" placeholder="Type here" min="60" max="150" step="5" style="width:100px;"  id="timerInput">
 										<!-- <div><button onclick="setTimer()">Apply</button></div>  -->
 									</div>
 								</td>
@@ -231,15 +231,17 @@
 							<tr>
 								<td>
 									<div>
-										<h3>Please choose the colors of the balls:</h3>
+										<h3>Please choose colors of the balls:</h3>
 										<div>
 											<lable for="lblColorHighBall">25(points):</lable>
 											<input type="color" id="color25Ball"/>	
 										</div>
+										<br>
 										<div>
 											<lable for="lblColorMedBall">15(points):</lable>
 											<input type="color" id="color15Ball"/>	
 										</div>
+										<br>
 										<div>
 											<lable for="lblColorLowBall">5(points):</lable>
 											<input type="color" id="color5Ball"/>	
@@ -255,7 +257,7 @@
 										<h3>Please choose number of monster:</h3>
 										<div>
 											<label for="lblNumOfMosnters">Number of monster:</label>
-											<input id="numMonster" type="number" min="1" max="4" step="1" placeholder="Type number in range of 1-4">
+											<input id="numMonster" type="number" min="1" max="4" step="1" style="width:100px;"  placeholder="Type here">
 											<!-- <button type="button" onclick="setNumOfmonsters()">Apply</button> -->
 										</div>
 									</div>
@@ -368,6 +370,28 @@
 								</div>
 							</td>
 							<td>
+								<div align="conter">
+									<div>
+										<label for="monstersNum">Up key(&uarr;):</label>
+										<br>
+										<input id="upKeyIngame" type="text" />									</div>
+									</div>
+									<div>
+										<label for="monstersNum">Down key(&darr;):</label>
+										<br>
+										<input id="downKeyIngame" type="text" />	
+									</div>
+									<div>
+										<label for="monstersNum">Right key(&rarr;):</label>
+										<br>
+										<input id="rightKeyIngame" type="text" />	
+									</div>
+									<div>
+										<label for="monstersNum">Left key(&larr;):</label>
+										<br>
+										<input id="leftKeyIngame" type="text" />	
+									</div>
+								</div>
 								<div align="center">
 									<label for="monstersNum">Number of Monsters:</label>
 									<br>

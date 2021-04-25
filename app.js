@@ -154,10 +154,7 @@ function displayConfig(){
 function displayAbout(){
 	$('#Content').children().hide();
 	$('#about').show();
-	// window.clearInterval(interval);
 	earse();
-	// window.clearInterval(monsterInterval);
-	// window.clearInterval(movingPointInterval);
 	var modal = document.getElementById("myModal");
 	var span = document.getElementsByClassName("close")[1];
 
@@ -403,6 +400,7 @@ function Draw() {
 	fifteenPointBall.value = color15p;
 	twentyFivePointBall.value = color25p;
 	monstersNum.value = numberOfMonnsers;
+	upKeyIngame.value = lblKeyDownIn.value;
 
 
   if(timer!=null){
