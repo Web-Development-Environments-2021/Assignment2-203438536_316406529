@@ -65,12 +65,13 @@ var color5p= "purple";
 4= wall
 5= special food
 10= monster
-50=movingPoints
+50= movingPoints
 40= lifeBalls
+12= time balls
 */
 // const context = canvas.getContext("2d");
 $(document).ready(function() {
-	// context = canvas.getContext("2d");
+	context = canvas.getContext("2d");
 	// Start();
 	$('#Content').children().hide();
 	$('#welcome').show();
@@ -167,7 +168,7 @@ function displayAbout(){
 }
 
 function displayGamePage(){
-	context = canvas.getContext("2d");
+	// context = canvas.getContext("2d");
 	$('#Content').children().hide();
 	$('#gamePage').show();
 	// window.clearInterval(interval);
@@ -216,9 +217,9 @@ function Start() {
 	fifteenPointFoodRemain = food_remain*0.3;
 	TwentyFivePintFoodRemain = food_remain*0.1;
 	if (failsLeft == 0){
+		earse();
 		alert("you lost the game");
 		alert("you have reached: "+ score +" score");
-		earse();
 	}
 
 	board = new Array();
@@ -758,6 +759,9 @@ function movigObjectRandomMove(object,symbol){//location, board number
 		}
 		x=5;
 		y=5;	
+		
 	}	
+	Draw();
+
 }
 
