@@ -170,14 +170,18 @@ function displayAbout(){
 
 function displayGamePage(){
 	// context = canvas.getContext("2d");
-	$('#Content').children().hide();
-	$('#gamePage').show();
 	// window.clearInterval(interval);
 	// window.clearInterval(monsterInterval);
 	// window.clearInterval(movingPointInterval);
 	// window.clearInterval(monsterInterval);
 	earse();
 	Start();
+	var time_start_wait = new Date();
+	// while (time_start_wait < 5){
+	// 	continue;
+	// }
+	$('#Content').children().hide();
+	$('#gamePage').show();
 }
 
 function LogIn(){
@@ -252,52 +256,6 @@ function Start() {
 		}
 	}
 
-	// for (var i = 0; i < width; i++) {
-	// 	board[i] = new Array();
-	// 	//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
-	// 	for (var j = 0; j < hight; j++) {
-	// 		if (
-	// 			(i == 2 && j == 3) ||
-	// 			(i == 2 && j == 4) ||
-	// 			(i == 2 && j == 5) ||
-	// 			(i == 6 && j == 1) ||
-	// 			(i == 6 && j == 2) ||
-	// 			(i == 3 && j == 5) ||
-	// 			(i == 11 && j == 7) ||
-	// 			(i == 12 && j == 7) ||
-	// 			(i == 13 && j == 7) ||
-	// 			(i == 12 && j == 8) ||
-	// 			(i == 1 && j == 8) ||
-	// 			(i == 2 && j == 8) ||
-	// 			(i == 3 && j == 8) ||
-	// 			(i == 11 && j == 2) ||
-	// 			(i == 11 && j == 3) ||
-	// 			(i == 11 && j == 4) ||
-	// 			(i == 7 && j == 7) ||
-	// 			(i == 6 && j == 7) ||
-	// 			(i == 8 && j == 4) ||
-	// 			(i == 10 && j == 7)
-	// 		) {
-	// 			board[i][j] = 4;
-	// 		} else {
-	// 			var randomNum = Math.random();
-	// 			if (randomNum <= (1.0 * food_remain) / cnt) {
-	// 				food_remain--;
-	// 				// board[i][j] = 1;
-	// 			} else if (randomNum < (1.0 * (pacman_remain + food_remain)) / cnt) {
-	// 				if(!((i==width-1 && j==hight-1) || (i==0 && j==0) || (i==0 && j==hight-1) || (i==width-1 && j==0))){
-	// 					shape.i = i;
-	// 					shape.j = j;
-	// 					pacman_remain--;
-	// 					board[i][j] = 2;
-	// 				}
-	// 			} else {
-	// 				board[i][j] = 0;
-	// 			}
-	// 			cnt--;
-	// 		}
-	// 	}
-	// }
 	while (fivePointFoorRemain > 0) {
 		var emptyCell = findRandomEmptyCell(board);
 		board[emptyCell[0]][emptyCell[1]] = 5;
@@ -355,9 +313,9 @@ function Start() {
 		},
 		false
 	);
-	monsterInterval = setInterval(mostersLocationsUpdate,1000);
-	interval = setInterval(UpdatePosition, 300);
-	movingPointInterval = setInterval(movingPointRandomMove, 800);
+	interval = setInterval(UpdatePosition, 150);
+	monsterInterval = setInterval(mostersLocationsUpdate,500);
+	movingPointInterval = setInterval(movingPointRandomMove, 500);
 }
 
 function walls(){
@@ -653,6 +611,7 @@ function UpdatePosition() {
 	if(timer != null){
 		if(time_elapsed >= timer){
 			alert("game finished!");
+			earse();
 		}
 	}
 	if (score >= 20 && time_elapsed <= 10) {
