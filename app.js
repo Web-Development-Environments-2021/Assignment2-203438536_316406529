@@ -51,6 +51,10 @@ var timer;
 var playingNow;
 //last key press
 var lastKey;
+//balls color 
+var color25p = "green";
+var color15p= "blue";
+var color5p= "purple";
 
 /*
 0 = empty
@@ -180,8 +184,9 @@ function LogIn(){
 	let logInPass = document.getElementById("logInPass").value;
 	let detailCheck = checkLogInDetails(logInUserName,logInPass);
 	if(detailCheck){
-		alert(logInUserName);
 		playingNow = logInUserName;
+		document.getElementById("logInUserName").value ='';
+		document.getElementById("logInPass").value = '';
 		displayGamePage();
 	}
 	else{
@@ -395,20 +400,20 @@ function Draw() {
 				context.arc(center.x + 5, center.y - 13, 4, 0, 2 * Math.PI); // circle
 				context.fillStyle = "black"; //color
 				context.fill();
-			} else if (board[i][j] == 5) {//5 point cirle
+			} else if (board[i][j] == 5) {//5 point circle
 				context.beginPath();
 				context.arc(center.x, center.y, 5, 0, 2 * Math.PI); // circle black 1 point
-				context.fillStyle = "black"; //color
+				context.fillStyle = color5p; //color
 				context.fill();
 			} else if (board[i][j] == 15){//special 15 points
 				context.beginPath();
 				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle green 5 points
-				context.fillStyle = "green"; //color
+				context.fillStyle = color15p; //color
 				context.fill();
 			} else if (board[i][j] == 25){//special 25 points
 				context.beginPath();
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle green 5 points
-				context.fillStyle = "#FF8C00"; //color
+				context.fillStyle = color25p; //color
 				context.fill();
 			}else if (board[i][j] == 4) {//wall
 				context.beginPath();
@@ -584,12 +589,13 @@ function UpdatePosition() {
 	if (score >= 20 && time_elapsed <= 10) {
 		pac_color = "green";
 	}
-	if (score >= 50) {
-		window.clearInterval(interval);
-		window.clearInterval(monsterInterval);
-		window.clearInterval(movingPointInterval);
-		window.alert("Game completed");
-	} else {
+	// if (score >= 50) {
+	// 	window.clearInterval(interval);
+	// 	window.clearInterval(monsterInterval);
+	// 	window.clearInterval(movingPointInterval);
+	// 	window.alert("Game completed");
+	// } 
+	else {
 		Draw();
 	}
 }

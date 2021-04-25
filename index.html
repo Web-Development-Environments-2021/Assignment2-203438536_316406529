@@ -74,7 +74,7 @@
 								  </td>
 								  <td>
 									<div class="form-group col-md-6">
-										<input class="form-control" name="password2" placeholder="Re-enter password" type="password">
+										<input class="form-control" name="password2" id="passwordRe" placeholder="Re-enter password" type="password">
 									  </div>
 								  </td>
 							  </tr>
@@ -99,7 +99,7 @@
 								  </td>
 								  <td>
 									<div class="form-group col-md-6">
-										<input class="form-control" name="secondName" placeholder="Last name" type="text">
+										<input class="form-control" name="secondName" id="lastnameIn" placeholder="Last name" type="text">
 									  </div>
 								  </td>
 							  </tr>
@@ -169,6 +169,44 @@
 
 						<h1>Define the keys to move with!</h1>
 						<div id="chooseKeys">
+							<table width=70%>
+								<tr>
+									<td>
+										<div>
+											<button id='btnUp' type="button" onclick="keyUpSet()" style="font-size:x-large;">&uarr;</button>
+											<label for="lblKeyUp">Your choose is:</label>
+											<input type="text" id="lblKeyUpIn"/>
+										</div>
+									</td>
+									<td>
+										<div>
+											<button id='btnDown' type="button" onclick="keyDownSet()" style="font-size:x-large;">&darr;</button>
+											<label for="lblKeyDown">Your choose is:</label>
+											<input type="text" id="lblKeyDownIn"/>
+
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div>
+											<button id='btnRight' type="button" onclick="keyRightSet()" style="font-size:x-large;">&rarr;</button>
+											<label for="lblKeyRight">Your choose is:</label>
+											<input type="text" id="lblKeyRightIn"/>
+										</div>
+									</td>
+									<td>
+										<div>
+											<button id='btnLeft' type="button" onclick="keyLeftSet()" style="font-size:x-large;">&larr;</button>
+											<label for="lblKeyLeft">Your choose is:</label>
+											<input type="text" id="lblKeyLeftIn"/>
+										</div>
+									</td>
+								</tr>
+
+							</table>
+						
+						<!-- <div id="chooseKeys">
 							<h2>Key up:</h2>
 							<input type="text" id="upKey" maxlength="1" placeholder="Tap key to move up with" required> 
 							<br>
@@ -184,10 +222,10 @@
 							<div>
 								<button type="button" class="setKeysButton" onclick="setKeyToGame()">Apply</button>
 								<button type="button" onclick="setDefault()">Reset(defaul)</button>
-							</div>
+							</div> -->
 						</div>
+						<!-- Number of balls setting -->
 						<div>
-							<!-- to check -->
 							<h2>Choose number of balls:</h2>
 							<input type="number" placeholder="Number of balls(50-90)" id="numOfBalls">
 							<div>
@@ -195,7 +233,8 @@
 							</div>
 							
 						</div>
-						<div>
+						<!-- Timer setting -->
+						<div> 
 							<h2>Choose time for the game</h2>
 							<input type="number" placeholder="Set time for game" id="timerInput">
 							<div><button onclick="setTimer()">Apply</button></div> 

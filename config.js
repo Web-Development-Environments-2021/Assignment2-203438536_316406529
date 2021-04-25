@@ -45,13 +45,71 @@ function setTimer(){
 }
 
 function setBallsColor(){
-    let highBall = $('#color25Ball').val();
-    let medBall = $('#color15Ball').val();
-    let lowBall = $('#color5Ball').val();
+    // let highBall = $('#color25Ball').val();
+    // let medBall = $('#color15Ball').val();
+    // let lowBall = $('#color5Ball').val();
+    color5p = $('#color5Ball').val();
+    color15p = $('#color15Ball').val();
+    color25p =  $('#color25Ball').val();
     alert(highBall);
 }
 
 function setNumOfmonsters(){
     var numMonster = document.getElementById("numMonster").value;
     numberOfMonnsers = numMonster;
+}
+
+function keyUpSet(){
+    addEventListener('keydown',function up(e) {
+        // $('lblKeyUpID').value = e.keyCode;
+        // lblKeyUpIn.value = e.keyCode;
+        keyUp = e.keyCode;
+        lblKeyUpIn.value = String.fromCharCode(e.keyCode);
+        removeEventListener('keydown',up);
+    })
+    
+}
+function keyDownSet(){
+    addEventListener('keydown',function down(e) {
+        // $('lblKeyUpID').value = e.keyCode;
+        // lblKeyUpIn.value = e.keyCode;
+        if(e.keyCode == keyUp){
+            alert("choose another");
+        }
+        else{
+            keyDown = e.keyCode;
+            lblKeyDownIn.value = String.fromCharCode(e.keyCode);
+        }
+        removeEventListener('keydown',down);
+    })
+
+}
+
+function keyRightSet(){
+    addEventListener('keydown', function right(e) {
+        // $('lblKeyUpID').value = e.keyCode;
+        // lblKeyUpIn.value = e.keyCode;
+        if(e.keyCode == keyUp && e.keyCode == keyDown){
+            alert("choose another");
+        }
+        else{
+            keyRight = e.keyCode;
+            lblKeyRightIn.value = String.fromCharCode(e.keyCode);
+        }
+        removeEventListener('keydown', right);
+    })
+}
+function keyLeftSet(){
+    addEventListener('keydown',function left(e) {
+        // $('lblKeyUpID').value = e.keyCode;
+        // lblKeyUpIn.value = e.keyCode;
+        if(e.keyCode == keyUp || e.keyCode == keyDown || e.keyCode == keyRight){
+            alert("choose another");
+        }
+        else{
+            keyLeft = e.keyCode;
+            lblKeyLeftIn.value = String.fromCharCode(e.keyCode);
+        }
+        removeEventListener('keydown', left);
+    })
 }
