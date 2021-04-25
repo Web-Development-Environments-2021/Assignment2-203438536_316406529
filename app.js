@@ -171,7 +171,6 @@ function displayAbout(){
 			modal.style.display = "none";
 		}
 		$('#welcome').show();
-
 	};
 	//close id ESC press
 	window.addEventListener('keyup', function(event) {
@@ -189,6 +188,8 @@ function displayGamePage(){
 	// window.clearInterval(monsterInterval);
 	// window.clearInterval(movingPointInterval);
 	// window.clearInterval(monsterInterval);
+	$('#Content').children().hide();
+	$('#gamePage').show();
 	earse();
 	Start();
 	$('#Content').children().hide();
