@@ -330,6 +330,7 @@ function Start() {
 	interval = setInterval(UpdatePosition, 150);
 	monsterInterval = setInterval(mostersLocationsUpdate,500);
 	movingPointInterval = setInterval(movingPointRandomMove, 500);
+	Draw();
 }
 
 function walls(){
