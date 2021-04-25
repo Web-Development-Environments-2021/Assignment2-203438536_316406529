@@ -57,6 +57,9 @@ var color25p = "green";
 var color15p= "blue";
 var color5p= "purple";
 
+var audio = new Audio('Queen - Bohemian Rhapsody (Live Aid 1985).mp3');
+
+
 /*
 0 = empty
 1 = food
@@ -87,34 +90,39 @@ window.addEventListener("keydown", function(e) {//disable keyboard scrolling
 function displayWelcome(){
 	$('#Content').children().hide();
 	$('#welcome').show();
-	window.clearInterval(interval);
-	window.clearInterval(monsterInterval);
-	window.clearInterval(movingPointInterval);
-
+	// window.clearInterval(interval);
+	// window.clearInterval(monsterInterval);
+	// window.clearInterval(movingPointInterval);
+	earse();
 }
 
 function displayRegister(){
 	$('#Content').children().hide();
 	$('#Register').show();
-	window.clearInterval(interval);
-	window.clearInterval(monsterInterval);
-	window.clearInterval(movingPointInterval);
+	// window.clearInterval(interval);
+	// window.clearInterval(monsterInterval);
+	// window.clearInterval(movingPointInterval);
+	earse();
+
 }
 
 function displayLogin(){
 	$('#Content').children().hide();
 	$('#logIn').show();
-	window.clearInterval(interval);
-	window.clearInterval(monsterInterval);
-	window.clearInterval(movingPointInterval);
+	// window.clearInterval(interval);
+	// window.clearInterval(monsterInterval);
+	// window.clearInterval(movingPointInterval);
+	earse();
+
 }
 
 function displayConfig(){
 	$('#Content').children().hide();
 	$('#config').show();
-	window.clearInterval(interval);
-	window.clearInterval(monsterInterval);
-	window.clearInterval(movingPointInterval);
+	// window.clearInterval(interval);
+	// window.clearInterval(monsterInterval);
+	// window.clearInterval(movingPointInterval);
+	earse();
 	var modal = document.getElementById("myModalConfig");
 	var span = document.getElementsByClassName("close")[0];
 
@@ -127,6 +135,8 @@ function displayConfig(){
 		if (event.target == modal) {
 			modal.style.display = "none";
 		}
+		$('#welcome').show();
+
 	};
 	//close id ESC press
 	window.addEventListener('keyup', function(event) {
@@ -135,15 +145,19 @@ function displayConfig(){
 			// try close your dialog
 			modal.style.display = "none";
 		}
+		$('#welcome').show();
+
+		
 	});
 }
 
 function displayAbout(){
 	$('#Content').children().hide();
 	$('#about').show();
-	window.clearInterval(interval);
-	window.clearInterval(monsterInterval);
-	window.clearInterval(movingPointInterval);
+	// window.clearInterval(interval);
+	earse();
+	// window.clearInterval(monsterInterval);
+	// window.clearInterval(movingPointInterval);
 	var modal = document.getElementById("myModal");
 	var span = document.getElementsByClassName("close")[1];
 
@@ -156,6 +170,7 @@ function displayAbout(){
 		if (event.target == modal) {
 			modal.style.display = "none";
 		}
+		$('#welcome').show();
 	};
 	//close id ESC press
 	window.addEventListener('keyup', function(event) {
@@ -177,10 +192,6 @@ function displayGamePage(){
 	$('#gamePage').show();
 	earse();
 	Start();
-	var time_start_wait = new Date();
-	// while (time_start_wait < 5){
-	// 	continue;
-	// }
 	$('#Content').children().hide();
 	$('#gamePage').show();
 }
@@ -213,10 +224,12 @@ function earse(){
 	window.clearInterval(interval);
 	window.clearInterval(monsterInterval);
 	window.clearInterval(movingPointInterval);
+	audio.pause();
 
 }
 
 function Start() {
+	audio.play();
 	timer = initTime;
 	food_remain = init_food_remain;
 	fivePointFoorRemain = food_remain*0.6;
