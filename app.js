@@ -57,6 +57,9 @@ var color25p = "green";
 var color15p= "blue";
 var color5p= "purple";
 
+var audio = new Audio('Queen - Bohemian Rhapsody (Live Aid 1985).mp3');
+
+
 /*
 0 = empty
 1 = food
@@ -176,10 +179,6 @@ function displayGamePage(){
 	// window.clearInterval(monsterInterval);
 	earse();
 	Start();
-	var time_start_wait = new Date();
-	// while (time_start_wait < 5){
-	// 	continue;
-	// }
 	$('#Content').children().hide();
 	$('#gamePage').show();
 }
@@ -216,6 +215,7 @@ function earse(){
 }
 
 function Start() {
+	audio.play();
 	timer = initTime;
 	food_remain = init_food_remain;
 	fivePointFoorRemain = food_remain*0.6;
