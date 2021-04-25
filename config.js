@@ -1,3 +1,5 @@
+
+
 function setKeyToGame(){
    keyUp = ascii(document.getElementById("upKey").value);
    keyDown = ascii(document.getElementById("downKey").value);
