@@ -12,10 +12,20 @@ menuButton{
 
 }
 menuButton:hover{
-    background-color: rgb(208, 241, 62);
+    background-color: rgb(207, 230, 109);
 }
-
-
+#menuAbout:hover{
+    background-color: rgb(129, 218, 148);
+}
+#menuConfig:hover{
+    background-color: rgb(130, 141, 201);
+}
+#menuRegister:hover{
+    background-color: rgb(218, 156, 112);
+}
+#menuLogin:hover{
+    background-color: rgb(209, 163, 221);
+}
 #Menu{
     height: 50px;
 	border-bottom: 2px solid #ccc;
@@ -47,13 +57,15 @@ button[disabled]:hover {
     background-color: transparent;
 }
 button:hover{
-    background-color: rgb(62, 241, 188);
+    background-color: rgb(231, 204, 116);
 }
 
 #Content{
     padding-top: 100px;
 }
-
+#Footer{
+    margin-top: 120px;
+}
 #game{
     width: 100%;
     height: 100%;

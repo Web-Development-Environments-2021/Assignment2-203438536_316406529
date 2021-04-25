@@ -134,6 +134,7 @@ function keyLeftSet(){
         removeEventListener('keydown', left);
     })
 }
+
 function removeKeyFromArray(item){
     for(var i in usedKeys){
         if(usedKeys[i]==item){
