@@ -39,7 +39,12 @@ button {
     margin: 4px 2px;
     cursor: pointer;
   }
-
+button[disabled]:hover {
+    /* background: rgb(7, 7, 7); */
+    /* pointer-events: none; */
+    pointer-events:none;
+    background-color: transparent;
+}
 button:hover{
     background-color: rgb(62, 241, 188);
 }
