@@ -29,7 +29,7 @@ function setDefault(){
 
 function setNumberOfBalls(){
     // food_remain = document.getElementById("numOfBalls").value;
-    food_remain = Number($('#numOfBalls').val());
+    init_food_remain = Number($('#numOfBalls').val());
     // alert(food_remain);
     document.getElementById("numOfBalls").value ='';
 }
