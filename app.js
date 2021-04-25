@@ -424,7 +424,7 @@ function GetKeyPressed() {
 function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
-	lblTime.value = time_elapsed;
+	lblTime.value = Math.floor(time_elapsed);
 	numberOfBalls.value = init_food_remain;
 	GameInitTIme.value = initTime;
 	fivePointBall.value = color5p;
@@ -434,7 +434,7 @@ function Draw() {
 
 
   if(timer!=null){
-		lblRemain.value = timer-time_elapsed;	
+		lblRemain.value = Math.floor(timer-time_elapsed);	
 	}
 	currUser.value = playingNow;
 	lifeRemain.value = failsLeft;	
