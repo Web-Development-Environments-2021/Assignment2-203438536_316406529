@@ -155,11 +155,17 @@ function displayAbout(){
 	}
 	//close if click outside the modal
 	window.onclick = function(event) {
-		if (event.target == modal) {
+		// alert("click");
+		var targetEvent = event.target.id;
+		if (targetEvent == "Header" || targetEvent == "Footer" || targetEvent == "Content" || targetEvent == "Menu" || targetEvent=="about") {
+			// alert("in box");
 			modal.style.display = "none";
-			displayWelcome();
+			// displayWelcome();
 		}
-		// $('#welcome').show();
+		else{
+			// modal.style.display = "none";
+			// alert("out box");	
+		}
 	};
 	//close id ESC press
 	window.addEventListener('keyup', function(event) {
