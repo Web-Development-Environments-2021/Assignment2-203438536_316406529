@@ -20,8 +20,8 @@ var TwentyFivePintFoodRemain=5;
 var lifeBalls = 2;
 var x_press = 0.15;
 var y_press =1.85;
-var eye_press_y;
-var eye_press_x;
+var eye_press_y = 13;
+var eye_press_x = 5;
 var keyUp = 38;
 var keyDown = 40;
 var keyLeft = 37;
@@ -57,8 +57,8 @@ var color25p = "green";
 var color15p= "blue";
 var color5p= "purple";
 
-var audio = new Audio('Queen - Bohemian Rhapsody (Live Aid 1985).mp3');
-
+var audio = new Audio('Big Beat Manifesto.mp3');
+var audioPlay = false;
 
 /*
 0 = empty
@@ -208,6 +208,16 @@ function LogIn(){
 		alert("userName Or Password Incorrect")
 	}
 }
+function PlayPause(){
+	if(audioPlay){
+		audioPlay = false;
+		audio.pause();
+	}
+	else{
+		audioPlay = true;
+		audio.play();
+	}
+}
 
 function earse(){
 	score = 0;
@@ -222,11 +232,12 @@ function earse(){
 	window.clearInterval(monsterInterval);
 	window.clearInterval(movingPointInterval);
 	audio.pause();
+	audioPlay = false;
 
 }
 
 function Start() {
-	audio.play();
+	PlayPause();
 	timer = initTime;
 	food_remain = init_food_remain;
 	fivePointFoorRemain = food_remain*0.6;
@@ -368,25 +379,29 @@ function GetKeyPressed() {
 	if (keysDown[keyUp]) { //up
 		x_press =1.65 ;
 		y_press = 3.35;
+		eye_press_y = 2;
+		eye_press_x = 13;
 		return 1;
 	}
 	if (keysDown[keyDown]) {//down
 		x_press = 0.7;
 		y_press = 2.4;
+		eye_press_y = -2;
+		eye_press_x = 13;
 		return 2;
 	}
 	if (keysDown[keyLeft]) {//left
 		x_press = 1.10;
 		y_press = 2.80;
-		// eye_press_y = 13;
-		// eye_press_x = 2;
+		eye_press_y = 13;
+		eye_press_x = -2;
 		return 3;
 	}
 	if (keysDown[keyRight]) {//right
 		x_press = 0.15;
 		y_press =1.85;
-		// eye_press_y = 13;
-		// eye_press_x = 5;
+		eye_press_y = 13;
+		eye_press_x = 2;
 		return 4;
 	}
 }
@@ -426,7 +441,7 @@ function Draw() {
 				context.fillStyle = pac_color; //color
 				context.fill();
 				context.beginPath();
-				context.arc(center.x + 5, center.y - 13, 4, 0, 2 * Math.PI); // circle
+				context.arc(center.x + eye_press_x, center.y - eye_press_y, 4, 0, 2 * Math.PI); // circle- eye
 				context.fillStyle = "black"; //color
 				context.fill();
 			} else if (board[i][j] == 5) {//5 point circle
