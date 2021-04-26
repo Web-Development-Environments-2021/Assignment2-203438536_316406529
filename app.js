@@ -143,7 +143,7 @@ function displayConfig(){
 
 function displayAbout(){
 	$('#Content').children().hide();
-	$('#about').show();
+	// $('#about').show();
 	earse();
 	var modal = document.getElementById("myModal");
 	var span = document.getElementsByClassName("close")[1];

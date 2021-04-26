@@ -182,6 +182,16 @@ function applyUnlock()
         document.getElementById("applyBtn").disabled = false;
     }
 }
+
+function resetConfig(){
+    document.getElementById('numOfBalls').value = '';
+    document.getElementById('timerInput').value = '';
+    document.getElementById('color25Ball').value = '';
+    document.getElementById('color15Ball').value = '';
+    document.getElementById('color5Ball').value = '';
+    document.getElementById('numMonster').value='';
+
+}
 function ApplyConfig(){
     setNumberOfBalls();
     setTimer();

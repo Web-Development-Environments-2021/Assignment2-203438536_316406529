@@ -183,14 +183,14 @@
 									<td>
 										<div>
 											<button id='btnUp' type="button" onclick="keyUpSet()" style="font-size:x-large;">&uarr;</button>
-											<label for="lblKeyUp">Your choose is:</label>
+											<label for="lblKeyUp">Current key:</label>
 											<input type="text" id="lblKeyUpIn" value="ArrowUp"/>
 										</div>
 									</td>
 									<td>
 										<div>
 											<button id='btnDown' type="button" onclick="keyDownSet()" style="font-size:x-large;" disabled>&darr;</button>
-											<label for="lblKeyDown">Your choose is:</label>
+											<label for="lblKeyDown">Current key:</label>
 											<input type="text" id="lblKeyDownIn" value="ArrowDown"/>
 
 										</div>
@@ -200,14 +200,14 @@
 									<td>
 										<div>
 											<button id='btnRight' type="button" onclick="keyRightSet()" style="font-size:x-large;" disabled>&rarr;</button>
-											<label for="lblKeyRight">Your choose is:</label>
+											<label for="lblKeyRight">Current key:</label>
 											<input type="text" id="lblKeyRightIn" value="ArrowRight"/>
 										</div>
 									</td>
 									<td>
 										<div>
 											<button id='btnLeft' type="button" onclick="keyLeftSet()" style="font-size:x-large;" disabled>&larr;</button>
-											<label for="lblKeyLeft">Your choose is:</label>
+											<label for="lblKeyLeft">Current key:</label>
 											<input type="text" id="lblKeyLeftIn" value="ArrowLeft"/>
 										</div>
 									</td>
@@ -276,6 +276,7 @@
 					
 						<div align="center">
 							<button type="button" id="applyBtn" onclick="ApplyConfig()" disabled>Apply!</button>
+							<button type="button" id="resetCon" onclick="resetConfig()">Reset</button>
 							<button type="button" onclick="randomSetting()">Random</button>
 						</div>
 					</div>
@@ -283,10 +284,11 @@
 			</div>	
 
 			<div id="about">
+				
 				<!-- The Modal -->
-				<div id="myModal" class="modal" >
+				<!-- <div id="myModal" class="modal" >
 
-					<!-- Modal content -->
+					Modal content
 					<div class="modal-content">
 						<span class="close">&times;</span>
 						<br>
@@ -302,7 +304,7 @@
 
 						</aboutText>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<div id="gamePage">
 				<div style="display:none;">
@@ -458,6 +460,23 @@
 			<br>
 			<h2>For more details- please contact us on email- <br> avirang@post.bgu.ac.il <br> kotlar@post.bgu.ac.il</h2>
 		</div>
+		<dialog id="myModal" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<br>
+				<aboutText>Aviran Giat and Noam Kotlar.</aboutText>
+				<br>
+				<br>
+				<br>
+				<br>
+				<aboutText>The Jquery plugin we used in this assignment was 'validator' in the register submit. <br>
+				Beside that we hundle some difficulties at the logic part to set all the elements that run on different intervals<br>
+				to be aware to each other. The logic of all the monsters and the special ball movements was a bit tricky and hard to debug.
+				<br>To implement the option to choose keyboards to movement in the configuration section.<br> we used EventListener and function to be sure that the user doesnt type two same keys.
+
+				</aboutText>
+			</div>
+		</dialog>
 
 
 	</body>
