@@ -155,18 +155,37 @@ function displayAbout(){
 	}
 	//close if click outside the modal
 	window.onclick = function(event) {
-		// alert("click");
-		var targetEvent = event.target.id;
-		if (targetEvent == "Header" || targetEvent == "Footer" || targetEvent == "Content" || targetEvent == "Menu" || targetEvent=="about") {
-			// alert("in box");
+		if (event.target == modal) {
+		  modal.style.display = "none";
+		}
+	}
+	//close id ESC press
+	window.addEventListener('keyup', function(event) {
+		// If  ESC key was pressed...
+		if (event.keyCode == 27) {
+			// try close your dialog
 			modal.style.display = "none";
-			// displayWelcome();
+			displayWelcome();
 		}
-		else{
-			// modal.style.display = "none";
-			// alert("out box");	
+	});
+}
+function modalTest(){
+	$('#Content').children().hide();
+
+	var modal = document.getElementById("myModal2");
+	var span = document.getElementsByClassName("close")[2];
+
+	modal.style.display = "block";
+	span.onclick = function() {
+		modal.style.display = "none";
+		displayWelcome();
+	}
+	//close if click outside the modal
+	window.onclick = function(event) {
+		if (event.target == modal) {
+		  modal.style.display = "none";
 		}
-	};
+	}
 	//close id ESC press
 	window.addEventListener('keyup', function(event) {
 		// If  ESC key was pressed...
