@@ -149,19 +149,30 @@ function randomSetting(){
     lblKeyRightIn.value = "ArrowRight";
     lblKeyLeftIn.value="ArrowLeft";
     //number of balls
-    init_food_remain = 50;
+    init_food_remain = getRandomInt(50,90) ;
     //number of monster
-    numberOfMonnsers = 4;
+    numberOfMonnsers = getRandomInt(1,4);
     //timer
-    timer = 60;
+    timer = getRandomInt(60,150);
     //balls colors
-    color25p = "green";
-    color15p= "blue";
-    color5p= "purple";
+    color25p = getRandomColor();
+    color15p = getRandomColor();
+    color5p = getRandomColor();
 
     //start game
     displayGamePage();
+}
 
+function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
 
 
