@@ -120,7 +120,7 @@
 					  <br>
 
 					<div>
-						<input class="btn btn-primary" id="submit-button" type="submit" value="Sign Up" onclick="submitRegister()">
+						<button class="btn btn-primary" id="submit-button" type="submit" value="Sign Up" onclick="submitRegister()">Submit</button>
 					</div>
 					<div class="clearfix">
 					</div>
@@ -154,7 +154,7 @@
 									<label for="logInPass"><b>Password:</b></label>
 								</td>
 								<td>
-									<input type="text" placeholder="Enter Password" name="pass" id="logInPass" required>
+									<input type="password" placeholder="Enter Password" name="pass" id="logInPass" required>
 								</td>
 							</tr>
 						</tbody>
@@ -172,7 +172,7 @@
 				<div id="myModalConfig" class="modal">
 					<div class="modal-content">
 						<span class="close">&times;</span>
-						<h1 style="color:rgb(32, 133, 99)">Configuration setup</h1>
+						<h1 style="color:rgb(43, 77, 65)">Configuration setup</h1>
 						<div id="chooseKeys">
 							<h2>Please choose key to move the pacman</h2>
 							<h3>Type the arrow button and then type any key to define the movement.</h3>
@@ -212,14 +212,14 @@
 								</tr>
 
 							</table>
-						</div>
+						</div>							
 						<table align="center">
 							<tr>
 								<td align="center">
 								<!-- Number of balls setting -->
 								<div>
 									<h3>Choose number of balls:</h3>
-									<input type="number" placeholder="Type here" min="50" max="90" step="5"  style="width:100px;" id="numOfBalls">
+									<input class="configInput" type="number" placeholder="Type here" min="50" max="90" step="5"  style="width:100px;" id="numOfBalls" oninput="applyUnlock()">
 									<div>
 										<!-- <button type="button" onclick="setNumberOfBalls()">Apply</button> -->
 									</div>
@@ -230,7 +230,7 @@
 									<!-- Timer setting -->
 									<div> 
 										<h3>Choose time for the game</h3>
-										<input type="number" placeholder="Type here" min="60" max="150" step="5" style="width:100px;"  id="timerInput">
+										<input class="configInput" type="number" placeholder="Type here" min="60" max="150" step="5" style="width:100px;"  id="timerInput">
 										<!-- <div><button onclick="setTimer()">Apply</button></div>  -->
 									</div>
 								</td>
@@ -264,15 +264,16 @@
 										<h3>Please choose number of monster:</h3>
 										<div>
 											<label for="lblNumOfMosnters">Number of monster:</label>
-											<input id="numMonster" type="number" min="1" max="4" step="1" style="width:100px;"  placeholder="Type here">
+											<input id="numMonster" type="number" min="1" max="4" step="1" style="width:100px;"  placeholder="Type here" oninput="applyUnlock()">
 											<!-- <button type="button" onclick="setNumOfmonsters()">Apply</button> -->
 										</div>
 									</div>
 								</td>
 							</tr>
 						</table>
+					
 						<div align="center">
-							<button type="button" onclick="ApplyConfig()">Apply!</button>
+							<button type="button" id="applyBtn" onclick="ApplyConfig()" disabled>Apply!</button>
 							<button type="button" onclick="randomSetting()">Random</button>
 						</div>
 					</div>
@@ -292,7 +293,12 @@
 						<br>
 						<br>
 						<br>
-						<aboutText>The Jquery plugins we used in this assignment was 'validator' in the register submit. </aboutText>
+						<aboutText>The Jquery plugin we used in this assignment was 'validator' in the register submit. <br>
+						Beside that we hundle some difficulties at the logic part to set all the elements that run on different intervals<br>
+						to be aware to each other. The logic of all the monsters and the special ball movements was a bit tricky and hard to debug.
+						<br>To implement the option to choose keyboards to movement in the configuration section.<br> we used EventListener and function to be sure that the user doesnt type two same keys.
+
+						</aboutText>
 					</div>
 				</div>
 			</div>
@@ -325,20 +331,20 @@
 													<div id="score" align="center">
 														<label for="lblScore">Score:</label>
 														<br>
-														<input id="lblScore" type="text" />
+														<input class="gameInput" id="lblScore" type="text" />
 													</div>
 												</td>
 												<td width=33%>
 													<div align="center">
 														<label for="lblTime">Time:</label>
 														<br>
-														<input id="lblTime" type="text" />
+														<input class="gameInput" id="lblTime" type="text" />
 													</div>
 												</td>
 												<td width=33% align="center">
 													<label for=lblRemain">Remain Time:</label>
 													<br>
-													<input id="lblRemain" type="text"/>
+													<input class="gameInput" id="lblRemain" type="text"/>
 												</td>
 											</tr>
 										</tbody>
@@ -350,14 +356,14 @@
 													<div id="currentUser">
 														<label for="lblUserPlaying">Current User Is:</label>
 														<br>
-														<input id="currUser" type="text"/>
+														<input class="gameInput" id="currUser" type="text"/>
 													</div>
 												</td>
 												<td width=50% align="center">
 													<div id="numOfLifeRemain">
 														<label for="lblLifeRemain">Life remain:</label>
 														<br>
-														<input id="lifeRemain" type="text"/>
+														<input class="gameInput" id="lifeRemain" type="text"/>
 													</div>
 												</td>
 											</tr>
@@ -442,9 +448,9 @@
 
 		</div>
 		<div id="Footer" align="center">
-			<text>this pacman site has produced by Noam Kotlar & Avira Giat</text>
+			<text>This pacman site has produced by Noam Kotlar & Aviran Giat</text>
 			<br>
-			<text>For more details- contact us on email- <br> avirangi@post.bgu.ac.il <br> kotlar@post.bgu.ac.il</text>
+			<text>For more details, please contact us on email- <br> avirangi@post.bgu.ac.il <br> kotlar@post.bgu.ac.il</text>
 
 		</div>
 
