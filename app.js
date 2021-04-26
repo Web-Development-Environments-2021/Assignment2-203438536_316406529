@@ -196,7 +196,6 @@ function modalTest(){
 		}
 	});
 }
-
 function displayGamePage(){
 	// context = canvas.getContext("2d");
 	// window.clearInterval(interval);
