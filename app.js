@@ -499,11 +499,11 @@ function Draw() {
 				// context.fillStyle = "pint"; //color
 				context.fill();
 			}
-			// if(noPointsLeft){
-			// 	alert('Winner!!!');
-			// 	earse();
-			// }
 		}
+	}
+	if(noPointsLeft){
+		alert('Winner!!!');
+		earse();
 	}
 }
 
