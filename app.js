@@ -57,7 +57,7 @@ var color25p = "green";
 var color15p= "blue";
 var color5p= "purple";
 
-var audio = new Audio('Queen - Bohemian Rhapsody (Live Aid 1985).mp3');
+var audio = new Audio('Big Beat Manifesto.mp3');
 var audioPlay = false;
 
 /*
