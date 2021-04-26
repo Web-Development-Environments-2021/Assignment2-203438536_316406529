@@ -110,7 +110,9 @@ fieldset{
 #gamePage{
     background-color: rgb(175, 246, 255);
     width: 70%;
+    min-width: 950px;
 }
+
 table{
     width: 100%;
 }

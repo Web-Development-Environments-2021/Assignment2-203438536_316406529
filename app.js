@@ -117,13 +117,17 @@ function displayConfig(){
 	modal.style.display = "block";
 	span.onclick = function() {
 		modal.style.display = "none";
+		displayWelcome();
 	}
 	//close if click outside the modal
 	window.onclick = function(event) {
 		if (event.target == modal) {
 			modal.style.display = "none";
+			displayWelcome();
+
 		}
 		// $('#welcome').show();
+
 
 	};
 	//close id ESC press
@@ -132,9 +136,9 @@ function displayConfig(){
 		if (event.keyCode == 27) {
 			// try close your dialog
 			modal.style.display = "none";
+			displayWelcome();
 		}
-		$('#welcome').show();
-	});
+			});
 }
 
 function displayAbout(){
@@ -147,11 +151,13 @@ function displayAbout(){
 	modal.style.display = "block";
 	span.onclick = function() {
 		modal.style.display = "none";
+		displayWelcome();
 	}
 	//close if click outside the modal
 	window.onclick = function(event) {
 		if (event.target == modal) {
 			modal.style.display = "none";
+			displayWelcome();
 		}
 		// $('#welcome').show();
 	};
@@ -161,6 +167,7 @@ function displayAbout(){
 		if (event.keyCode == 27) {
 			// try close your dialog
 			modal.style.display = "none";
+			displayWelcome();
 		}
 	});
 }
@@ -171,8 +178,7 @@ function displayGamePage(){
 	// window.clearInterval(monsterInterval);
 	// window.clearInterval(movingPointInterval);
 	// window.clearInterval(monsterInterval);
-	$('#Content').children().hide();
-	$('#gamePage').show();
+
 	earse();
 	Start();
 	$('#Content').children().hide();
@@ -188,7 +194,7 @@ function LogIn(){
 		playingNow = logInUserName;
 		document.getElementById("logInUserName").value ='';
 		document.getElementById("logInPass").value = '';
-		displayGamePage();
+		displayConfig();
 	}
 	else{
 		alert("userName Or Password Incorrect")
