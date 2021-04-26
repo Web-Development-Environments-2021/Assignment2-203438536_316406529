@@ -416,7 +416,12 @@ function Draw() {
 	fifteenPointBall.value = color15p;
 	twentyFivePointBall.value = color25p;
 	monstersNum.value = numberOfMonnsers;
-	upKeyIngame.value = lblKeyDownIn.value;
+	//key represent
+	upKeyIngame.value = document.getElementById('lblKeyUpIn').value;
+	downKeyIngame.value = document.getElementById('lblKeyDownIn').value;
+	rightKeyIngame.value = document.getElementById('lblKeyRightIn').value;
+	leftKeyIngame.value = document.getElementById('lblKeyLeftIn').value;
+
 
 
   if(timer!=null){
