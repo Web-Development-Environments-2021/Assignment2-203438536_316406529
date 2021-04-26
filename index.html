@@ -175,14 +175,14 @@
 										<div>
 											<button id='btnUp' type="button" onclick="keyUpSet()" style="font-size:x-large;">&uarr;</button>
 											<label for="lblKeyUp">Your choose is:</label>
-											<input type="text" id="lblKeyUpIn"/>
+											<input type="text" id="lblKeyUpIn" value="ArrowUp"/>
 										</div>
 									</td>
 									<td>
 										<div>
 											<button id='btnDown' type="button" onclick="keyDownSet()" style="font-size:x-large;" disabled>&darr;</button>
 											<label for="lblKeyDown">Your choose is:</label>
-											<input type="text" id="lblKeyDownIn"/>
+											<input type="text" id="lblKeyDownIn" value="ArrowDown"/>
 
 										</div>
 									</td>
@@ -192,14 +192,14 @@
 										<div>
 											<button id='btnRight' type="button" onclick="keyRightSet()" style="font-size:x-large;" disabled>&rarr;</button>
 											<label for="lblKeyRight">Your choose is:</label>
-											<input type="text" id="lblKeyRightIn"/>
+											<input type="text" id="lblKeyRightIn" value="ArrowRight"/>
 										</div>
 									</td>
 									<td>
 										<div>
 											<button id='btnLeft' type="button" onclick="keyLeftSet()" style="font-size:x-large;" disabled>&larr;</button>
 											<label for="lblKeyLeft">Your choose is:</label>
-											<input type="text" id="lblKeyLeftIn"/>
+											<input type="text" id="lblKeyLeftIn" value="ArrowLeft"/>
 										</div>
 									</td>
 								</tr>
@@ -266,6 +266,7 @@
 						</table>
 						<div align="center">
 							<button type="button" onclick="ApplyConfig()">Apply!</button>
+							<button type="button" onclick="randomSetting()">Random</button>
 						</div>
 					</div>
 				</div>
@@ -373,22 +374,22 @@
 							<td>
 								<div align="center">
 									<div>
-										<label for="monstersNum">Up key(&uarr;):</label>
+										<label for="Keyuplbl">Up key(&uarr;):</label>
 										<br>
 										<input id="upKeyIngame" type="text" />
 									</div>
 									<div align="center">
-										<label for="monstersNum">Down key(&darr;):</label>
+										<label for="Keydownlbl">Down key(&darr;):</label>
 										<br>
 										<input id="downKeyIngame" type="text" />	
 									</div>
 									<div align="center">
-										<label for="monstersNum">Right key(&rarr;):</label>
+										<label for="Keyrightlbl">Right key(&rarr;):</label>
 										<br>
 										<input id="rightKeyIngame" type="text" />	
 									</div>
 									<div align="center">
-										<label for="monstersNum">Left key(&larr;):</label>
+										<label for="Keyleftlbl">Left key(&larr;):</label>
 										<br>
 										<input id="leftKeyIngame" type="text" />	
 									</div>
