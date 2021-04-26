@@ -174,8 +174,14 @@ function getRandomColor() {
     }
     return color;
 }
-
-
+var counter = 0;
+function applyUnlock()
+{
+    counter++;
+    if(counter == 2){
+        document.getElementById("applyBtn").disabled = false;
+    }
+}
 function ApplyConfig(){
     setNumberOfBalls();
     setTimer();

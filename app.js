@@ -169,33 +169,8 @@ function displayAbout(){
 		}
 	});
 }
-function modalTest(){
-	$('#Content').children().hide();
 
-	var modal = document.getElementById("myModal2");
-	var span = document.getElementsByClassName("close")[2];
 
-	modal.style.display = "block";
-	span.onclick = function() {
-		modal.style.display = "none";
-		displayWelcome();
-	}
-	//close if click outside the modal
-	window.onclick = function(event) {
-		if (event.target == modal) {
-		  modal.style.display = "none";
-		}
-	}
-	//close id ESC press
-	window.addEventListener('keyup', function(event) {
-		// If  ESC key was pressed...
-		if (event.keyCode == 27) {
-			// try close your dialog
-			modal.style.display = "none";
-			displayWelcome();
-		}
-	});
-}
 function displayGamePage(){
 	// context = canvas.getContext("2d");
 	// window.clearInterval(interval);
@@ -469,13 +444,13 @@ function Draw() {
 				noPointsLeft = false;
 			} else if (board[i][j] == 15){//special 15 points
 				context.beginPath();
-				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle green 5 points
+				context.arc(center.x, center.y, 8.5, 0, 2 * Math.PI); // circle green 5 points
 				context.fillStyle = color15p; //color
 				context.fill();
 				noPointsLeft =false;
 			} else if (board[i][j] == 25){//special 25 points
 				context.beginPath();
-				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle green 5 points
+				context.arc(center.x, center.y, 7, 0, 2 * Math.PI); // circle green 5 points
 				context.fillStyle = color25p; //color
 				context.fill();
 				noPointsLeft =false;

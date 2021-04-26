@@ -77,7 +77,6 @@ button:hover{
     height: 100%;
 	border: 3px solid rgb(0, 0, 0);
     border-radius: 4px;
-
 }
 
 #Register, #logIn{
@@ -106,15 +105,25 @@ fieldset{
 .has-error{
     color: red;
 }
-
+body{
+    background-color: rgba(88, 132, 214, 0.418);
+}
 #gameData{
 	border-radius: 4px;
-    background-color: rgb(105, 227, 243);
+    background-color: rgb(109, 189, 169);
 }
 #gamePage{
-    background-color: rgb(175, 246, 255);
+    background-color: rgba(146, 235, 220, 0.774);
     width: 70%;
     min-width: 950px;
+  
+}
+#Register{
+    background-color:white;
+}
+#logIn{
+    background-color:white;
+
 }
 
 table{
@@ -123,6 +132,12 @@ table{
 #logInTable{
     width: 50%;
 }
+.gameInput{
+    background-color:  rgb(62, 124, 109);
+    text-decoration-color: beige;
+}
+/* modal dialog style */
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
