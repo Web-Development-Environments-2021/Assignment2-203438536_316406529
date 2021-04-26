@@ -90,18 +90,12 @@ window.addEventListener("keydown", function(e) {//disable keyboard scrolling
 function displayWelcome(){
 	$('#Content').children().hide();
 	$('#welcome').show();
-	// window.clearInterval(interval);
-	// window.clearInterval(monsterInterval);
-	// window.clearInterval(movingPointInterval);
 	earse();
 }
 
 function displayRegister(){
 	$('#Content').children().hide();
 	$('#Register').show();
-	// window.clearInterval(interval);
-	// window.clearInterval(monsterInterval);
-	// window.clearInterval(movingPointInterval);
 	earse();
 
 }
@@ -109,9 +103,6 @@ function displayRegister(){
 function displayLogin(){
 	$('#Content').children().hide();
 	$('#logIn').show();
-	// window.clearInterval(interval);
-	// window.clearInterval(monsterInterval);
-	// window.clearInterval(movingPointInterval);
 	earse();
 
 }
@@ -119,9 +110,6 @@ function displayLogin(){
 function displayConfig(){
 	$('#Content').children().hide();
 	$('#config').show();
-	// window.clearInterval(interval);
-	// window.clearInterval(monsterInterval);
-	// window.clearInterval(movingPointInterval);
 	earse();
 	var modal = document.getElementById("myModalConfig");
 	var span = document.getElementsByClassName("close")[0];
@@ -149,10 +137,8 @@ function displayConfig(){
 			// try close your dialog
 			modal.style.display = "none";
 			displayWelcome();
-
 		}
-		
-	});
+			});
 }
 
 function displayAbout(){

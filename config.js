@@ -22,12 +22,6 @@ function ascii (a) {
     return keyCode; 
 }
 
-function setDefault(){
-    keyUp = 38;
-    keyDown = 40;
-    keyLeft = 37;
-    keyRight = 39;
-}
 
 function setNumberOfBalls(){
     init_food_remain = Number($('#numOfBalls').val());
@@ -144,6 +138,31 @@ function removeKeyFromArray(item){
     }
 }
 
+function randomSetting(){
+    //keys deafult (with arrows)
+    keyUp = 38;
+    keyDown = 40;
+    keyLeft = 37;
+    keyRight = 39;
+    lblKeyUpIn.value = "ArrowUp";
+    lblKeyDownIn.value = "ArrowDown";
+    lblKeyRightIn.value = "ArrowRight";
+    lblKeyLeftIn.value="ArrowLeft";
+    //number of balls
+    init_food_remain = 50;
+    //number of monster
+    numberOfMonnsers = 4;
+    //timer
+    timer = 60;
+    //balls colors
+    color25p = "green";
+    color15p= "blue";
+    color5p= "purple";
+
+    //start game
+    displayGamePage();
+
+}
 
 
 function ApplyConfig(){
