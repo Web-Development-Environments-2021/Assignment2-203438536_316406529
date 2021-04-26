@@ -420,7 +420,8 @@ function Draw() {
 		lblRemain.value = Math.floor(timer-time_elapsed);	
 	}
 	currUser.value = playingNow;
-	lifeRemain.value = failsLeft;	
+	lifeRemain.value = failsLeft;
+	var noPointsLeft= true;
 	for (var i = 0; i < width; i++) {
 		for (var j = 0; j < hight; j++) {
 			var center = new Object();
@@ -441,16 +442,19 @@ function Draw() {
 				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle black 1 point
 				context.fillStyle = color5p; //color
 				context.fill();
+				noPointsLeft = false;
 			} else if (board[i][j] == 15){//special 15 points
 				context.beginPath();
 				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle green 5 points
 				context.fillStyle = color15p; //color
 				context.fill();
+				noPointsLeft =false;
 			} else if (board[i][j] == 25){//special 25 points
 				context.beginPath();
 				context.arc(center.x, center.y, 10, 0, 2 * Math.PI); // circle green 5 points
 				context.fillStyle = color25p; //color
 				context.fill();
+				noPointsLeft =false;
 			}else if (board[i][j] == 4) {//wall
 				context.beginPath();
 				context.rect(center.x - 30, center.y - 30, 60, 60);
@@ -471,6 +475,7 @@ function Draw() {
 				// context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle yellow 50 points
 				// context.fillStyle = "yellow"; //color
 				context.fill();
+				noPointsLeft =false;
 			}
 			else if (board[i][j] == 40){//life
 				context.beginPath();
@@ -488,6 +493,10 @@ function Draw() {
 				// context.fillStyle = "pint"; //color
 				context.fill();
 			}
+			// if(noPointsLeft){
+			// 	alert('Winner!!!');
+			// 	earse();
+			// }
 		}
 	}
 }
@@ -635,7 +644,12 @@ function UpdatePosition() {
 	// alert(timer);
 	if(timer != null){
 		if(time_elapsed >= timer){
-			alert("game finished!");
+			if(score >=100){
+				alert('You are better than '+ score +' points');
+			}
+			else{
+				alert('Winner!!!')
+			}
 			earse();
 		}
 	}
@@ -655,10 +669,8 @@ function UpdatePosition() {
 
 function monsterEatPacman(){
 	if (failsLeft == 0){
-		alert("you lost the game");
-		alert("you have reached: "+ score +" score");
+		alert("Loser!");
 		earse();
-		Start();
 	}
 	// board[monster1Location[0]][monster1Location[1]] = monster1Location[2];
 	// monster1Location = [0,0,0];
