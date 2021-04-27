@@ -22,8 +22,8 @@
 			<menuButton onclick="displayLogin()" id="menuLogin">Login</menuButton>
 			<menuButton onclick="displayRegister()" id="menuRegister">Register</menuButton>
 			<!-- <menuButton onclick="displayConfig()" id="menuConfig" >Configuration</menuButton> -->
-			<menuButton onclick="displayAbout()" id="menuAbout">About</menuButton>
-			<button onclick="openDialog()">Test Dialog</button>
+			<menuButton onclick="openDialog('myModal')" id="menuAbout">About</menuButton>
+			<!-- <button onclick="openDialog('testDialog')" >Test Dialog</button> -->
 			
 		</div>
 		<div id="Content" align="center">
@@ -394,43 +394,44 @@
 							</td>
 							<td>
 								<div align="center">
-									<button type="button"onclick= "PlayPause()">Mute/Play music</button>
+									<button type="button"onclick= "PlayPause()">&#x23ef play/pause </button>
 
 									<div>
 										<label for="Keyuplbl">Up key(&uarr;):</label>
 										<br>
-										<input id="upKeyIngame" type="text" />
+										<input class="gameInput" id="upKeyIngame" type="text" />
 									</div>
 									<div align="center">
 										<label for="Keydownlbl">Down key(&darr;):</label>
 										<br>
-										<input id="downKeyIngame" type="text" />	
+										<input class="gameInput" id="downKeyIngame" type="text" />	
 									</div>
 									<div align="center">
 										<label for="Keyrightlbl">Right key(&rarr;):</label>
 										<br>
-										<input id="rightKeyIngame" type="text" />	
+										<input class="gameInput" id="rightKeyIngame" type="text" />	
 									</div>
 									<div align="center">
 										<label for="Keyleftlbl">Left key(&larr;):</label>
 										<br>
-										<input id="leftKeyIngame" type="text" />	
+										<input class="gameInput" id="leftKeyIngame" type="text" />	
 									</div>
 								</div>
+
 								<div align="center">
 									<label for="monstersNum">Number of Monsters:</label>
 									<br>
-									<input id="monstersNum" type="text" />
+									<input class="gameInput" id="monstersNum" type="text" />
 								</div>
 								<div align="center">
 									<label for="numberOfBalls">Number of balls:</label>
 									<br>
-									<input id="numberOfBalls" type="text" />
+									<input class="gameInput" id="numberOfBalls" type="text" />
 								</div>
 								<div align="center">
 									<label for="GameInitTIme">Game initial time:</label>
 									<br>
-									<input id="GameInitTIme" type="text" />
+									<input class="gameInput" id="GameInitTIme" type="text" />
 								</div>
 								<div align="center">
 									<label for="fivePointBall">5 points ball color:</label>
@@ -457,19 +458,19 @@
 		</div>
 		<div id="Footer" align="center">
 
-			<h1>This pacman site has produced by Noam Kotlar & Avira Giat</h1>
+			<h2>This pacman site has produced by Noam Kotlar & Aviran Giat</h2>
 			<br>
 			<div class="fb-page" data-href="https://www.facebook.com/pacman" data-tabs="timeline" data-width="" data-height="70" data-small-header="false" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/pacman" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/korkifix">‎Korkifix - חנות קורקינטים חשמליים ומעבדת תיקונים‎</a></blockquote></div>
 			<br>
 			<br>
-			<h2>For more details- please contact us on email- <br> avirang@post.bgu.ac.il <br> kotlar@post.bgu.ac.il</h2>
+			<h2>For more details- please contact us on email- <br> avirangi@post.bgu.ac.il <br> kotlar@post.bgu.ac.il</h2>
 		</div>
-		<dialog id="myModal" class="modal">
+		<!-- <dialog id="myModal" class="modal">
 			<div class="modal-content" align=center>
 				<span class="close">&times;</span>
 				<br>
 				<h1>PacMan Game</h1>
-				<h1>Aviran Giat and Noam Kotlar.</h1>
+				<h1>Aviran Giat and Noam Kotlar</h1>
 				<br>
 				<h3>The Jquery plugin we used in this assignment was 'validator' in the register submit. <br>
 				Beside that we hundle some difficulties at the logic part to set all the elements that run on different intervals<br>
@@ -478,15 +479,16 @@
 
 				</h3>
 D			</div>
-		</dialog>
-		<dialog id="testDialog">
-			<span class="close" id="testSpan" onclick="closeDialog()">&times;</span>
-			<h1>test dialog</h1>
-			<h3>The Jquery plugin we used in this assignment was 'validator' in the register submit. <br>
-				Beside that we hundle some difficulties at the logic part to set all the elements that run on different intervals<br>
+		</dialog> -->
+		<dialog id="myModal">
+			<span class="close" id="testSpan" onclick="closeDialog('myModal')">&times;</span>
+				<h2 align="center">Aviran Giat and Noam Kotlar</h2>
+				<br>
+				<h3 align="center" style="line-height: 1.8;">The Jquery plugin we used in this assignment was 'validator' in the register submit. <br>
+				Beside that we hundle some difficulties at the logic part to set all the elements that runs on different intervals<br>
 				to be aware to each other. The logic of all the monsters and the special ball movements was a bit tricky and hard to debug.
 				<br>To implement the option to choose keyboards to movement in the configuration section.<br> we used EventListener and function to be sure that the user doesnt type two same keys.
-			</h3>
+
 		</dialog>
 		
 
