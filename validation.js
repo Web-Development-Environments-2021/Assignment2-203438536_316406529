@@ -45,7 +45,7 @@ $(function() {
         email: {
           required: true,
           email: true,
-          remote: "http://localhost:3000/inputValidator"
+          // remote: "http://localhost:3000/inputValidator"
         },
         password: {
           required: true,
