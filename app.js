@@ -157,6 +157,7 @@ function displayAbout(){
 	window.onclick = function(event) {
 		if (event.target == modal) {
 		  modal.style.display = "none";
+		  displayWelcome();
 		}
 	}
 	//close id ESC press
@@ -169,7 +170,6 @@ function displayAbout(){
 		}
 	});
 }
-
 
 function displayGamePage(){
 	// context = canvas.getContext("2d");
@@ -199,6 +199,7 @@ function LogIn(){
 		alert("userName Or Password Incorrect")
 	}
 }
+
 function PlayPause(){
 	if(audioPlay){
 		audioPlay = false;
