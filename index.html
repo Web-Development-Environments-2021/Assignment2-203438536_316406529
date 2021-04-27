@@ -19,10 +19,11 @@
 		</div>
 		<div id="Menu">
 			<menuButton onclick="displayWelcome()" id="menuWelcome">Welcome</menuButton>
-			<menuButton onclick="displayRegister()" id="menuRegister">Register</menuButton>
 			<menuButton onclick="displayLogin()" id="menuLogin">Login</menuButton>
+			<menuButton onclick="displayRegister()" id="menuRegister">Register</menuButton>
 			<!-- <menuButton onclick="displayConfig()" id="menuConfig" >Configuration</menuButton> -->
 			<menuButton onclick="displayAbout()" id="menuAbout">About</menuButton>
+			<button onclick="openDialog()">Test Dialog</button>
 			
 		</div>
 		<div id="Content" align="center">
@@ -278,9 +279,9 @@
 						</table>
 					
 						<div align="center">
-							<button type="button" id="applyBtn" onclick="ApplyConfig()" disabled>Apply!</button>
+							<button type="button" id="applyBtn" onclick="ApplyConfig()" disabled>Start game!</button>
 							<button type="button" id="resetCon" onclick="resetConfig()">Reset</button>
-							<button type="button" onclick="randomSetting()">Random</button>
+							<button type="button" onclick="randomSetting()">Random choise</button>
 						</div>
 					</div>
 				</div>
@@ -476,8 +477,18 @@
 				<br>To implement the option to choose keyboards to movement in the configuration section.<br> we used EventListener and function to be sure that the user doesnt type two same keys.
 
 				</h3>
-			</div>
+D			</div>
 		</dialog>
+		<dialog id="testDialog">
+			<span class="close" id="testSpan" onclick="closeDialog()">&times;</span>
+			<h1>test dialog</h1>
+			<h3>The Jquery plugin we used in this assignment was 'validator' in the register submit. <br>
+				Beside that we hundle some difficulties at the logic part to set all the elements that run on different intervals<br>
+				to be aware to each other. The logic of all the monsters and the special ball movements was a bit tricky and hard to debug.
+				<br>To implement the option to choose keyboards to movement in the configuration section.<br> we used EventListener and function to be sure that the user doesnt type two same keys.
+			</h3>
+		</dialog>
+		
 
 
 	</body>

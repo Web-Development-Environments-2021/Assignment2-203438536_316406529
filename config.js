@@ -190,7 +190,10 @@ function resetConfig(){
     document.getElementById('color15Ball').value = '';
     document.getElementById('color5Ball').value = '';
     document.getElementById('numMonster').value='';
+    counter=0;
+    document.getElementById("applyBtn").disabled = true;
 
+ 
 }
 function ApplyConfig(){
     setNumberOfBalls();
