@@ -145,10 +145,13 @@ function displayAbout(){
 	$('#Content').children().hide();
 	// $('#about').show();
 	earse();
+	// document.getElementById("myModal").showModal();
 	var modal = document.getElementById("myModal");
 	var span = document.getElementsByClassName("close")[1];
 
 	modal.style.display = "block";
+	// modal.showModal();
+
 	span.onclick = function() {
 		modal.style.display = "none";
 		displayWelcome();
@@ -170,7 +173,20 @@ function displayAbout(){
 		}
 	});
 }
+function openDialog(){
+	document.getElementById("testDialog").showModal();
+}
+function closeDialog(){
+	document.getElementById("testDialog").close();
+}
+$(function(){
+	window.onclick = function(event) {
+		if (event.target == document.getElementById("testDialog")) {
+			closeDialog();
 
+		}
+	  }
+})
 function displayGamePage(){
 	// context = canvas.getContext("2d");
 	// window.clearInterval(interval);
