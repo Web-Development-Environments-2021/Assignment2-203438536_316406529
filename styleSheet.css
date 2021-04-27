@@ -64,12 +64,13 @@ button:hover{
     padding-top: 100px;
 }
 #Footer{
-    margin-top: 120px;
+    /* padding-top:100px; */
+    /* margin-top: 200px; */
 	border-top: 2px solid rgb(0, 0, 0);
 	border-radius: 4px;
     padding-top: 20px;
     margin-top: 100px;
-    background-color: rgb(255, 249, 241);
+    background-color: rgba(225, 252, 243, 0.747);
 
 }
 #game{
@@ -78,7 +79,9 @@ button:hover{
 	border: 3px solid rgb(0, 0, 0);
     border-radius: 4px;
 }
-
+body{
+    background-color: rgb(176, 236, 217);
+}
 #Register, #logIn{
     width: 50%;
 }
@@ -123,7 +126,6 @@ fieldset{
     background-color:white;
 
 }
-
 table{
     width: 100%;
 }
@@ -131,7 +133,9 @@ table{
     width: 50%;
 }
 .gameInput{
-    background-color:  rgb(62, 124, 109);
+    color:rgb(213, 230, 221);
+    width: min-content;
+    background-color:rgb(40, 100, 85);
     text-decoration-color: beige;
 }
 /* modal dialog style */

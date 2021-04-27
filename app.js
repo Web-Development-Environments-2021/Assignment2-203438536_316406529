@@ -141,51 +141,63 @@ function displayConfig(){
 			});
 }
 
-function displayAbout(){
+// function displayAbout(){
+// 	$('#Content').children().hide();
+// 	// $('#about').show();
+// 	earse();
+// 	// document.getElementById("myModal").showModal();
+// 	var modal = document.getElementById("myModal");
+// 	var span = document.getElementsByClassName("close")[1];
+
+// 	modal.style.display = "block";
+// 	// modal.showModal();
+
+// 	span.onclick = function() {
+// 		modal.style.display = "none";
+// 		displayWelcome();
+// 	}
+// 	//close if click outside the modal
+// 	window.onclick = function(event) {
+// 		if (event.target == modal) {
+// 		  modal.style.display = "none";
+// 		  displayWelcome();
+// 		}
+// 	}
+// 	//close id ESC press
+// 	window.addEventListener('keyup', function(event) {
+// 		// If  ESC key was pressed...
+// 		if (event.keyCode == 27) {
+// 			// try close your dialog
+// 			modal.style.display = "none";
+// 			displayWelcome();
+// 		}
+// 	});
+// }
+function openDialog(id){
 	$('#Content').children().hide();
-	// $('#about').show();
 	earse();
-	// document.getElementById("myModal").showModal();
-	var modal = document.getElementById("myModal");
-	var span = document.getElementsByClassName("close")[1];
-
-	modal.style.display = "block";
-	// modal.showModal();
-
-	span.onclick = function() {
-		modal.style.display = "none";
-		displayWelcome();
-	}
-	//close if click outside the modal
+	document.getElementById(id).showModal();
+}
+function closeDialog(id){
+	document.getElementById(id).close();
+	displayWelcome();
+}
+$(function(){
 	window.onclick = function(event) {
-		if (event.target == modal) {
-		  modal.style.display = "none";
-		  displayWelcome();
+		if (event.target == document.getElementById("myModal")) {
+			closeDialog('myModal');
+			displayWelcome();
+
 		}
-	}
-	//close id ESC press
+	  }
 	window.addEventListener('keyup', function(event) {
 		// If  ESC key was pressed...
 		if (event.keyCode == 27) {
 			// try close your dialog
-			modal.style.display = "none";
+			closeDialog('myModal');
 			displayWelcome();
 		}
 	});
-}
-function openDialog(){
-	document.getElementById("testDialog").showModal();
-}
-function closeDialog(){
-	document.getElementById("testDialog").close();
-}
-$(function(){
-	window.onclick = function(event) {
-		if (event.target == document.getElementById("testDialog")) {
-			closeDialog();
-
-		}
-	  }
 })
 function displayGamePage(){
 	// context = canvas.getContext("2d");
