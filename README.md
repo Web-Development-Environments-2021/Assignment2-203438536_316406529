@@ -3,7 +3,7 @@
  We built a Pacman game by using HTML5, JavaScript and Jqurey.
  We used "validator" Jqurey plugin to check the validation of the details in the register form. 
  
-url- https://web-development-environments-2021.github.io/assignment2-203438536_316406529/
+url- https://web-development-environments-2021.github.io/Assignment2-203438536_316406529/
  
 ID - 203438536_316406529
 
