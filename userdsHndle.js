@@ -1,4 +1,4 @@
-const usersDB = [{
+var usersDB = [{
     userName: "k",
     password: "k",
     fullName: "",

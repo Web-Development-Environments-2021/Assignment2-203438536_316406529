@@ -45,7 +45,7 @@ $(function() {
         email: {
           required: true,
           email: true,
-          // remote: "http://localhost:3000/inputValidator"
+          remote: "https://localhost:3000/inputValidator"
         },
         password: {
           required: true,
@@ -98,7 +98,7 @@ $(function() {
 function submitRegister(){
     // alert($('#register-form').valid());
     if ($('#register-form').valid()){
-        alert($('#userNameIn').val());
+        // alert($('#userNameIn').val());
         usersDB.push({
             userName: $('#userNameIn').val(),
             password: $('#password').val(),
