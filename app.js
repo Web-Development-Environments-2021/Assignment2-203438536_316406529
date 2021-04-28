@@ -355,9 +355,9 @@ function Start() {
 		},
 		false
 	);
-	interval = setInterval(UpdatePosition, 150);
-	monsterInterval = setInterval(mostersLocationsUpdate,500);
-	movingPointInterval = setInterval(movingPointRandomMove, 500);
+	interval = setInterval(UpdatePosition, 120);
+	monsterInterval = setInterval(mostersLocationsUpdate,600);
+	movingPointInterval = setInterval(movingPointRandomMove, 600);
 	Draw();
 }
 
@@ -672,7 +672,7 @@ function UpdatePosition() {
 	// alert(timer);
 	if(timer != null){
 		if(time_elapsed >= timer){
-			if(score >=100){
+			if(score <=100){
 				alert('You are better than '+ score +' points');
 			}
 			else{
@@ -690,9 +690,9 @@ function UpdatePosition() {
 	// 	window.clearInterval(movingPointInterval);
 	// 	window.alert("Game completed");
 	// } 
-	else {
-		Draw();
-	}
+
+	Draw();
+	
 }
 
 function monsterEatPacman(){
@@ -765,7 +765,7 @@ function movigObjectRandomMove(object,symbol){//location, board number
 				y = Math.floor(Math.random() *10)-5;
 			}
 		}
-		if ((object[0] + x) < width && (object[1] +y) < hight){
+		if ((object[0] + x) < width && (object[1] +y) < hight && (object[0] +x) >=0 && (object[1] +y) >=0 ){
 			var monsterCrash = board[object[0]+x][object[1]+y] == 10 && symbol==50;
 			var specialPointCrash = board[object[0]+x][object[1]+y] == 50 && symbol==10;
 			var mostermonsterCreash = board[object[0]+x][object[1]+y] == 10 && symbol==10;
