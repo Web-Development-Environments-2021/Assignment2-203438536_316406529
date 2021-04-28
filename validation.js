@@ -34,7 +34,7 @@ $(function() {
         var checkUserNamrValid = checkIfUsernameExist(value);
         // alert(checkUserNamrValid);
         return checkUserNamrValid;
-    },'The user name is already exist in the system.')
+    },'Username already exist in the system.')
 
     $("#register-form").validate({
       rules: {
